@@ -72,3 +72,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Nightmare_Descent_Into_Darkness/Library/
+Nightmare_Descent_Into_Darkness/ProjectSettings/
+Nightmare_Descent_Into_Darkness/webgl/
