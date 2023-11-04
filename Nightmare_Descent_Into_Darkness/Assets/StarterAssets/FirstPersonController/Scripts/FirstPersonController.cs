@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -51,6 +52,14 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
+		[Tooltip("Indicator of crouching down position")]
+		public Transform CrouchingMoveTo;
+        [Tooltip("Indicator of crouching up position")]
+        public Transform CameraMoveTo;
+		[Tooltip("Crouching performing time")]
+		public float CrouchingSmoothTime;
+		[Tooltip("Crouching speed ratio to the normal speed")]
+		public float CrouchingSpeedRatio = 0.33f;
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -63,6 +72,9 @@ namespace StarterAssets
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
+
+		private bool _crouched;
+		private Vector3 _crouchingVelocity = Vector3.one;
 
 	
 #if ENABLE_INPUT_SYSTEM
@@ -93,6 +105,7 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
+
 		}
 
 		private void Start()
@@ -112,6 +125,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
+			Crouch();
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -193,11 +207,23 @@ namespace StarterAssets
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
 			}
+			if (_input.crouch)
+			{
+				_speed *= CrouchingSpeedRatio;
 
+            }
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 		}
 
+
+		/// <summary>
+		/// Compute vertical velocity
+		/// 
+		/// Point: _vertialcalVelocity will always be negative meaning
+		/// that there will always be a downward force. The player won't fall
+		/// off the floor because of the existence of colliders
+		/// </summary>
 		private void JumpAndGravity()
 		{
 			if (Grounded)
@@ -264,5 +290,30 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+		private void Crouch()
+		{
+            if(_input.crouch)
+			{
+                
+				CinemachineCameraTarget.transform.position = Vector3.SmoothDamp(
+					CinemachineCameraTarget.transform.position,
+					CrouchingMoveTo.position,
+					ref _crouchingVelocity,
+					CrouchingSmoothTime);
+
+      
+            }
+			else if(!_input.crouch)
+			{
+                CinemachineCameraTarget.transform.position = Vector3.SmoothDamp(
+                    CinemachineCameraTarget.transform.position,
+                    CameraMoveTo.position,
+                    ref _crouchingVelocity,
+                    CrouchingSmoothTime);
+    
+            }
+
+        }
+
 	}
 }
