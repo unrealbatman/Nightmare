@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - CinemachineTarget
+  - Waypoint
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - PP
   - Water
   - UI
-  - 
+  - NavMesh
   - 
   - 
   - 
