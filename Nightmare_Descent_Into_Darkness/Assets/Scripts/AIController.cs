@@ -25,8 +25,9 @@ public class AIController : MonoBehaviour
     private GameObject[] Waypoints;
     private int initRandomWaypoint;
     private int currentWaypointIndex;
-    private int patrolDirection=1;// 1 for ascending, -1 for descending
 
+
+    public float agentMoveSpeed =0.5f;
     void Start()
     {
 
@@ -69,26 +70,43 @@ public class AIController : MonoBehaviour
         }
     }
 
+
+    
+
+
+
+    
     void PatrolUpdate()
     {
-
-
-        if (agent.remainingDistance < 0.2f)
+        Transform wp = Waypoints[currentWaypointIndex].transform;
+      
+      
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            currentWaypointIndex += patrolDirection;
 
-            // Check if we've reached the end of the array
-            if (currentWaypointIndex>=Waypoints.Length || currentWaypointIndex < 0)
-            {
-                // Change direction
-                patrolDirection *= -1;
 
-                // Set the index to the next waypoint based on the new direction
-                currentWaypointIndex += patrolDirection; // Move by 2 to prevent immediately turning around
-            }
+
+            // Returns if no points have been set up
+            if (Waypoints.Length == 0)
+                return;
+
+           
+
+            // Choose the next point in the array as the destination,
+            // cycling to the start if necessary.
+            currentWaypointIndex = (currentWaypointIndex + 1) % Waypoints.Length;
         }
+        else
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                wp.position,
+                agentMoveSpeed * Time.deltaTime);
+        }
+
+        // Set the agent to go to the currently selected destination.
         agent.destination = Waypoints[currentWaypointIndex].transform.position;
-  
+
     }
 
     void ChaseUpdate()
