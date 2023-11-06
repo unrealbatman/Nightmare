@@ -1,203 +1,134 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
+    // Define the possible states
+    public enum State
+    {
+        Patrol,
+        Chase,
+        Search,
+        Attack
+    }
 
-    private enum _AiState { Patrol,Chase,Search
-            //,Attack
-            }
+    // Current state of the agent
+    private State currentState;
 
+    // Variables for state behavior
+    private Transform player; // Assuming player is a GameObject with a transform
+    private float searchTimer = 0f;
+    private float searchDuration = 120f; // 2 minutes for example
+
+    private NavMeshAgent agent;
     [SerializeField]
-    private _AiState _currentState;
-   
-    //private WaitForSeconds _attackTime = new WaitForSeconds(3.5f);
-    private WaitForSeconds _searchTime = new WaitForSeconds(3.8f);
+    private GameObject[] Waypoints;
+    private int initRandomWaypoint;
+    private int currentWaypointIndex;
+    private int patrolDirection=1;// 1 for ascending, -1 for descending
 
-    //private bool _isAttacking = false;
-    private bool _isSearching = false;
-    private bool _isChasing = false;
-    
-    [SerializeField]
-    private GameObject[] _waypoints;
-    private Animator _animator;
-    private NavMeshAgent _agent;
-
-    private const string _chaseRoutine = "chaseRoutine";
-    private const string _searchRoutine = "searchRoutine";
-
-    //private const string _attackRoutine = "AttackRoutine";
-
-    //private const string _attackAnim = "isAttacking";
-    private const string _chaseAnim = "isChasing";
-    private const string _searchAnim = "isSearching";
-    private const string _walkAnim = "isWalking";
-
-
-
-    private int _initRandomWaypoint;
-    private int _nextWaypoint;
-    private bool _isWaypointReversed = false;
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        
-        _animator = GetComponent<Animator>();
 
-        if(_animator == null ) {
-            Debug.Log("THe animator on the agent is NULL");
-        }
-
-        _waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
-        foreach (GameObject obj in _waypoints)
+        agent = GetComponent<NavMeshAgent>();
+        // Initialize with initial state
+        currentState = State.Patrol;
+        Waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        foreach(GameObject go in Waypoints)
         {
-            if (obj != null)
+
+
+            if (go != null)
             {
+
                 GetComponent<GameObject>();
             }
         }
-        _agent = GetComponent<NavMeshAgent>();
-         _initRandomWaypoint  = Random.Range(0, _waypoints.Length);
-        _currentState = _AiState.Patrol;
-        Debug.Log("RANDOM: " + _initRandomWaypoint);
-        _agent.SetDestination(_waypoints[1].transform.position);
-       // _agent.destination = ;
-        _animator.SetBool(_walkAnim, true);
-
+        initRandomWaypoint = Random.Range(0, Waypoints.Length);
+        currentWaypointIndex = initRandomWaypoint;
+        agent.SetDestination(Waypoints[initRandomWaypoint].transform.position);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        InputControls();
-        //AiState();
-
-        /*if (_agent.remainingDistance > 0.5)
+        // FSM logic
+        switch (currentState)
         {
-            _agent.isStopped =true;
-        }
-        Debug.Log("Destination: "+_agent.destination);*/
-    }
-
-    private void AiState()
-    {
-        switch (_currentState)
-        {
-            case _AiState.Patrol:
-                //Patrol behavior goes here
-                Debug.Log("Patrolling");
-                Patrol();
+            case State.Patrol:
+                PatrolUpdate();
                 break;
-           /* case _AiState.Chase:
-                //walking behavior goes here
-                Debug.Log("Chasing");
-                //CalculateAiMovement();
+            case State.Chase:
+                ChaseUpdate();
                 break;
-           // case _AiState.Attack:
-                //attacking behavior goes here
-               *//* Debug.Log("Attacking");
-                Attack();
-                break;*//*
-            case _AiState.Search:
-                //jumping behavior goes here
-                Debug.Log("Searching");
-               // Searching();
-                break;*/
-            default:
-                Debug.LogError("There is no state for this case");
+            case State.Search:
+                SearchUpdate();
+                break;
+            case State.Attack:
+                AttackUpdate();
                 break;
         }
     }
 
-
-    private void InputControls()
+    void PatrolUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+
+
+        if (agent.remainingDistance < 0.2f)
         {
-           // _currentState = _AiState.Chase;
-        }
+            currentWaypointIndex += patrolDirection;
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            /*_isChasing = false;
-            _isSearching = false;
-            _currentState = _AiState.Patrol;
-            _agent.isStopped = false;
-            _animator.SetBool(_walkAnim, true);*/
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-           // _currentState = _AiState.Attack;
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-           /* _isSearching =true;
-            _currentState = _AiState.Search;*/
-
-        }
-
-    }
-
-   private void Patrol()
-    {
-        Debug.Log("Agent distance to waypoint is " + _agent.remainingDistance);
-
-        if (_agent.remainingDistance < 0.1f)
-        {
-           StartCoroutine( ReverseWaypoint());
-        }
-    }
-
-
-    private IEnumerator ReverseWaypoint()
-    {
-    
-
-        yield return new WaitForSeconds(5f);
-        if (_isWaypointReversed == false)
-        {
-            if (_nextWaypoint < _waypoints.Length - 1)
+            // Check if we've reached the end of the array
+            if (currentWaypointIndex>=Waypoints.Length || currentWaypointIndex < 0)
             {
-                _nextWaypoint++;
-            }
-            else
-            {
-                _isWaypointReversed = true;
-                _nextWaypoint--;
+                // Change direction
+                patrolDirection *= -1;
+
+                // Set the index to the next waypoint based on the new direction
+                currentWaypointIndex += patrolDirection; // Move by 2 to prevent immediately turning around
             }
         }
-
-        else if (_isWaypointReversed)
-        {
-            if (_nextWaypoint > 0)
-            {
-                _nextWaypoint--;
-            }
-            else
-            {
-                _isWaypointReversed = false;
-                _nextWaypoint++;
-            }
-        }
-        _agent.SetDestination (_waypoints[_nextWaypoint].transform.position);
+        agent.destination = Waypoints[currentWaypointIndex].transform.position;
+  
     }
 
-
-
-    private void Attack()
+    void ChaseUpdate()
     {
-        /*if (_isAttacking == false)
-        {
-            _isAttacking = true;
-            StartCoroutine(_attackRoutine);
-        }*/
+        // Add behavior for Chase state here
+        // Example: Move towards player
+        // You can use Vector3.MoveTowards or other methods to approach the player
     }
 
+    void SearchUpdate()
+    {
+        // Add behavior for Search state here
+        // Example: Look for the player's last known position
 
+        // Increment search timer
+        searchTimer += Time.deltaTime;
+
+        if (searchTimer >= searchDuration)
+        {
+            // If search duration is reached, transition to Attack state
+            currentState = State.Attack;
+            searchTimer = 0f;
+        }
+    }
+
+    void AttackUpdate()
+    {
+        // Add behavior for Attack state here
+        // Example: Engage in combat with the player
+    }
+
+    // Function to transition to Chase state (called when player is detected)
+    public void TransitionToChase()
+    {
+        currentState = State.Chase;
+    }
+
+    // Function to transition to Search state (called when player is not visible)
+    public void TransitionToSearch()
+    {
+        currentState = State.Search;
+    }
 }
