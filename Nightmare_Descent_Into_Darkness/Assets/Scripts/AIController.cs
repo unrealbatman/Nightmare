@@ -64,7 +64,7 @@ public class AIController : MonoBehaviour
          _initRandomWaypoint  = Random.Range(0, _waypoints.Length);
         _currentState = _AiState.Patrol;
         Debug.Log("RANDOM: " + _initRandomWaypoint);
-        _agent.SetDestination(_waypoints[_initRandomWaypoint].transform.position);
+        _agent.SetDestination(_waypoints[1].transform.position);
        // _agent.destination = ;
         _animator.SetBool(_walkAnim, true);
 
@@ -76,11 +76,11 @@ public class AIController : MonoBehaviour
         InputControls();
         //AiState();
 
-        if (_agent.remainingDistance > 0.5)
+        /*if (_agent.remainingDistance > 0.5)
         {
             _agent.isStopped =true;
         }
-        Debug.Log("Destination: "+_agent.destination);
+        Debug.Log("Destination: "+_agent.destination);*/
     }
 
     private void AiState()

@@ -13,11 +13,10 @@ GameObject:
   - component: {fileID: 6670494248899037766}
   - component: {fileID: 7658680187814705230}
   - component: {fileID: 3522461698570749989}
-  - component: {fileID: 1546840118145974925}
   - component: {fileID: 8379162940210741568}
   - component: {fileID: 607967472982162136}
   - component: {fileID: 4381780276255803434}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AIMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,9 +118,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 3654695638622758732}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.6
+  m_Radius: 0.66
   m_Speed: 1
-  m_Acceleration: 8
+  m_Acceleration: 2
   avoidancePriority: 8
   m_AngularSpeed: 10
   m_StoppingDistance: 0
@@ -129,36 +128,9 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.96
-  m_BaseOffset: 0.96
+  m_BaseOffset: 0.95
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 0
---- !u!54 &1546840118145974925
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3654695638622758732}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!143 &8379162940210741568
 CharacterController:
   m_ObjectHideFlags: 0
