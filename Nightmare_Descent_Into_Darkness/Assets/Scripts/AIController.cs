@@ -170,7 +170,7 @@ public class AIController : MonoBehaviour
                     agent.speed = 10;
                     if (agent.remainingDistance < 0.1)
                     {
-                        //Attack animaiton plus attack
+                        currentState = State.Attack;
                     }
                     return;
                 }
