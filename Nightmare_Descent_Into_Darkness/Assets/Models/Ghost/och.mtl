@@ -1,0 +1,93 @@
+# Blender MTL File: 'None'
+# Material Count: 7
+
+newmtl ANIME_EYE_(UnityEngine.Material)
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump -bm 0.350042 och0_eyes0_nrm.png
+map_Kd och0_eyes0_def_bsm.png
+map_d och0_eyes0_def_bsm.png
+
+newmtl fabric_mid_glossy_(UnityEngine.Material)
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump -bm 0.350042 och0_wear0_def_nrm.png
+map_Kd och0_wear0_def_bsm.png
+map_d och0_wear0_def_bsm.png
+
+newmtl hair_(UnityEngine.Material)
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump -bm 0.350042 cm_flat_nrm.png
+map_Kd och0_hair0_def_bsm_alp.png
+map_d och0_hair0_def_bsm_alp.png
+
+newmtl heel_(UnityEngine.Material)
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump -bm 0.350042 och0_item0_def_nrm.png
+map_Kd och0_item0_def_bsm.png
+map_d och0_item0_def_bsm.png
+
+newmtl mout_(UnityEngine.Material)
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump -bm 0.350042 och0_mout0_hig_nrm.png
+map_Kd och0_mout0_hig_c00_bsm.png
+map_d och0_mout0_hig_c00_bsm.png
+
+newmtl ocho_body_(UnityEngine.Material)
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump -bm 0.350042 och0_body0_def_nrm.png
+map_Kd och0_body0_def_bsm.png
+map_d och0_body0_def_bsm.png
+
+newmtl ocho_face_(UnityEngine.Material)
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 0.000000
+illum 1
+map_Bump -bm 0.350042 och0_face0_def_nrm.png
+map_Kd och0_face0_def_bsm.png
+map_d och0_face0_def_bsm.png
