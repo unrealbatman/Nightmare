@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class AIController : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class AIController : MonoBehaviour
     // Variables for state behavior
     private Transform player; // Assuming player is a GameObject with a transform
     private float searchTimer = 0f;
-    private float searchDuration = 120f; // 2 minutes for example
+
+    [SerializeField]
+    private float searchDuration = 20f; // 2 minutes for example
 
     private NavMeshAgent agent;
     [SerializeField]
@@ -27,7 +30,17 @@ public class AIController : MonoBehaviour
     private int currentWaypointIndex;
 
 
+    [SerializeField]
+    private float _waitTime = 50f; // in seconds
+    private float _waitCounter = 0f;
+    private bool _waiting = false;
+
     public float agentMoveSpeed =0.5f;
+
+
+    public AudioSource playerFootstepAudio;
+    public float detectionRadius = 80f;
+    public float lineOfSightRadius =5f ;
     void Start()
     {
 
@@ -68,6 +81,9 @@ public class AIController : MonoBehaviour
                 AttackUpdate();
                 break;
         }
+
+        Debug.Log("Current State: " + currentState);
+        TransitionLogic();
     }
 
 
@@ -78,10 +94,30 @@ public class AIController : MonoBehaviour
     
     void PatrolUpdate()
     {
+
+        if (_waiting)
+        {
+            agent.isStopped = true;
+            //look around animation
+            _waitCounter += Time.deltaTime;
+            if (_waitCounter < _waitTime)
+            {
+
+                return;
+            }
+                
+            _waiting = false;
+        }
+        else
+        {
+            agent.isStopped = false;
+
+        }
+
+
+
         Transform wp = Waypoints[currentWaypointIndex].transform;
-      
-      
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 0.1f)
         {
 
 
@@ -90,19 +126,16 @@ public class AIController : MonoBehaviour
             if (Waypoints.Length == 0)
                 return;
 
-           
+
+            transform.position = wp.position;
+            _waitCounter = 0f;
+            _waiting = true;
 
             // Choose the next point in the array as the destination,
             // cycling to the start if necessary.
             currentWaypointIndex = (currentWaypointIndex + 1) % Waypoints.Length;
         }
-        else
-        {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                wp.position,
-                agentMoveSpeed * Time.deltaTime);
-        }
+       
 
         // Set the agent to go to the currently selected destination.
         agent.destination = Waypoints[currentWaypointIndex].transform.position;
@@ -114,20 +147,99 @@ public class AIController : MonoBehaviour
         // Add behavior for Chase state here
         // Example: Move towards player
         // You can use Vector3.MoveTowards or other methods to approach the player
+
+        agent.destination = player.transform.position;
+        if (Vector3.Distance(transform.position, player.transform.position) > 20)
+        {
+            agent.speed = 15;
+        }
+        else 
+        {
+            agent.speed = 8;    
+        }
+
+      
+            if (Vector3.Distance(transform.position, player.transform.position) < 5)
+        {
+            // If a potential player target is detected, perform a raycast to check for line of sight
+            RaycastHit rayHit;
+            if (Physics.Raycast(transform.position, player.transform.position - transform.position, out rayHit, detectionRadius))
+            {
+                if (rayHit.collider.CompareTag("Player"))
+                {
+                    agent.speed = 10;
+                    if (agent.remainingDistance < 0.1)
+                    {
+                        currentState = State.Attack;
+                    }
+                    return;
+                }
+            }
+        }
     }
 
+
+
+    void TransitionLogic()
+    {
+        // Use SphereCast to detect potential targets within the detection radius
+        Collider[] collider = Physics.OverlapSphere(transform.position, detectionRadius, LayerMask.GetMask("SoundMask"));
+
+        foreach (var hitCollider in collider)
+        {
+            if (hitCollider.CompareTag("Player"))
+            {
+
+                player = hitCollider.transform;
+                currentState = State.Chase;
+
+            }else
+            {
+                currentState = State.Search;
+            }
+
+        }
+
+        if (currentState == State.Chase )
+        {
+            RaycastHit raycastHit;
+            if (Physics.Raycast(transform.position, transform.forward, out raycastHit, lineOfSightRadius))
+            {
+                if (!raycastHit.collider.CompareTag("Player"))
+                {
+                    currentState = State.Search;
+
+                }
+                else
+                {
+                    currentState = State.Chase;
+                }
+            }
+
+
+
+        }
+
+    }
     void SearchUpdate()
     {
         // Add behavior for Search state here
         // Example: Look for the player's last known position
 
+
+        agent.isStopped = true;
+
+        agent.destination = new Vector3(Random.Range(agent.destination.x - 5, agent.destination.x + 5),transform.position.y, Random.Range(agent.destination.z - 5, agent.destination.z + 5));
+        agent.isStopped = false;
         // Increment search timer
         searchTimer += Time.deltaTime;
 
         if (searchTimer >= searchDuration)
         {
+            //play search animation
+
             // If search duration is reached, transition to Attack state
-            currentState = State.Attack;
+            currentState = State.Patrol;
             searchTimer = 0f;
         }
     }
@@ -138,15 +250,15 @@ public class AIController : MonoBehaviour
         // Example: Engage in combat with the player
     }
 
-    // Function to transition to Chase state (called when player is detected)
-    public void TransitionToChase()
+
+    void OnDrawGizmosSelected()
     {
-        currentState = State.Chase;
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
-    // Function to transition to Search state (called when player is not visible)
-    public void TransitionToSearch()
-    {
-        currentState = State.Search;
-    }
+
+
+   
 }
