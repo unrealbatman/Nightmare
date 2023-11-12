@@ -174,14 +174,20 @@ public class AIController : MonoBehaviour
                 if (rayHit.collider.CompareTag("Player"))
                 {
                     agent.speed = 10;
-                    if (agent.remainingDistance < 0.1)
+                    if (agent.remainingDistance<0.1)
                     {
-                        currentState = State.Attack;
+                       /* agent.isStopped = true;
+                        // Trigger the attack animation here
+                        animator.SetTrigger("Attack");
+                        currentState = State.Attack;*/
                     }
+
                     return;
                 }
             }
         }
+
+      
 
         // Calculate the direction to the target
         Vector3 targetDirection = agent.steeringTarget - transform.position;
@@ -194,6 +200,7 @@ public class AIController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 5f);
         }
     }
+
 
     void SearchUpdate()
     {
@@ -221,8 +228,22 @@ public class AIController : MonoBehaviour
     }
 
     void AttackUpdate()
-    {
-        // Add behavior for Attack state here
+    {/*
+        // Player is not in attack range, check if player has moved away
+        if (Vector3.Distance(transform.position, player.transform.position) >0.1 )
+        {
+            // Player has moved away, return to Chase state
+            currentState = State.Chase;
+            agent.isStopped =false;
+            animator.ResetTrigger("Attack");
+            animator.SetTrigger("Chase");
+            Debug.Log("Player has escaped, returning to Chase state.");
+            return;
+        }
+        else
+        {
+
+        }*/
     }
 
     void TransitionLogic()
