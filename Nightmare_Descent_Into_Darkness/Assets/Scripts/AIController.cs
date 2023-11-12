@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEditor;
 
 public class AIController : MonoBehaviour
 {
@@ -36,9 +37,11 @@ public class AIController : MonoBehaviour
 
     public float agentMoveSpeed = 0.5f;
 
-    public AudioSource playerFootstepAudio;
     public float detectionRadius = 80f;
-    public float lineOfSightRadius = 5f;
+
+    [Range(0, 360)]
+    public float fovAngle;
+    public float lineOfSightRadius = 180f;
 
     private Animator animator;
 
@@ -64,8 +67,8 @@ public class AIController : MonoBehaviour
         initRandomWaypoint = Random.Range(0, Waypoints.Length);
         currentWaypointIndex = initRandomWaypoint;
         agent.SetDestination(Waypoints[initRandomWaypoint].transform.position);
- 
-        
+
+
     }
 
     void Update()
@@ -90,7 +93,7 @@ public class AIController : MonoBehaviour
                 break;
         }
 
-       
+
         Debug.Log("Current State: " + currentState);
         TransitionLogic();
 
@@ -163,7 +166,7 @@ public class AIController : MonoBehaviour
             agent.speed = 8;
         }
 
-        if (Vector3.Distance(transform.position, player.transform.position) < 5)
+        if (agent.remainingDistance < 5)
         {
             RaycastHit rayHit;
             if (Physics.Raycast(transform.position, player.transform.position - transform.position, out rayHit, detectionRadius))
@@ -194,10 +197,8 @@ public class AIController : MonoBehaviour
 
     void SearchUpdate()
     {
-        agent.isStopped = true;
 
-        agent.destination = new Vector3(Random.Range(agent.destination.x - 5, agent.destination.x + 5), transform.position.y, Random.Range(agent.destination.z - 5, agent.destination.z + 5));
-        agent.isStopped = false;
+        agent.destination = player.transform.position;
 
         searchTimer += Time.deltaTime;
 
@@ -231,62 +232,83 @@ public class AIController : MonoBehaviour
             return;
         }
 
-        Collider[] collider = Physics.OverlapSphere(transform.position, detectionRadius, LayerMask.GetMask("SoundMask"));
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, LayerMask.GetMask("SoundMask"));
 
-        foreach (var hitCollider in collider)
+        bool playerDetected = false;
+
+        foreach (var collider in colliders)
         {
-            if (hitCollider.CompareTag("Player"))
+            if (collider.CompareTag("Player"))
             {
-                player = hitCollider.transform;
-                currentState = State.Chase;
+                player = collider.transform;
+                playerDetected = true;
 
-                animator.SetTrigger("Chase");
-                animator.ResetTrigger("Search");
+                Debug.Log("I can sense the player");
 
-                StartCoroutine(Cooldown());
-            }
-            else
-            {
-                animator.SetTrigger("Patrol");
-                animator.ResetTrigger("Chase");
-
-                currentState = State.Search;
-
-                StartCoroutine(Cooldown());
-            }
-        }
-
-        if (currentState == State.Chase)
-        {
-            RaycastHit raycastHit;
-            if (Physics.Raycast(transform.position, transform.forward, out raycastHit, lineOfSightRadius))
-            {
-                if (!raycastHit.collider.CompareTag("Player"))
+                if (agent.remainingDistance > 60)
                 {
+                    if (currentState != State.Chase)
+                    {
+                        currentState = State.Chase;
+                        animator.ResetTrigger("Search");
+                        animator.SetTrigger("Chase");
+                    }
+                    return; // Early exit if the player is far away
+                }
+
+                float signedAngle = Vector3.Angle(
+                    -transform.forward,
+                    player.position - transform.position);
+
+                if (Mathf.Abs(signedAngle) < fovAngle / 2)
+                {
+                    if (currentState != State.Chase)
+                    {
+                        currentState = State.Chase;
+                        animator.ResetTrigger("Search");
+                        animator.SetTrigger("Chase");
+                    }
+                }
+                else
+                {
+                    Debug.Log("I cant see the player");
                     currentState = State.Search;
                     animator.ResetTrigger("Chase");
                     animator.SetTrigger("Search");
                 }
-                else
-                {
-                    currentState = State.Chase;
-                    animator.SetTrigger("Chase");
-                    animator.ResetTrigger("Search");
-                }
+
+                return; // Early exit after processing the player
             }
+        }
+
+        // If no player is found
+        if (!playerDetected && currentState == State.Chase)
+        {
+            currentState = State.Search;
+            animator.ResetTrigger("Chase");
+            animator.SetTrigger("Search");
+            Debug.Log("Player exited the detection radius.");
         }
     }
 
-    IEnumerator Cooldown()
-    {
-        canTransition = false;
-        yield return new WaitForSeconds(2f); // Adjust the cooldown duration as needed
-        canTransition = true;
-    }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
+
+    IEnumerator Cooldown()
+        {
+            canTransition = false;
+            yield return new WaitForSeconds(2f); // Adjust the cooldown duration as needed
+            canTransition = true;
+        }
+
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, detectionRadius);
+            Handles.color = new Color(0, 1, 0, 0.3f);
+            Handles.DrawSolidArc(transform.position, transform.up, Quaternion.AngleAxis(-fovAngle / 2f,transform.up) * -transform.forward, fovAngle,lineOfSightRadius);
+/*            Debug.DrawRay(transform.position, -transform.forward.normalized * lineOfSightRadius, Color.blue, 5f);
+*/
+        }
+
+    
 }
