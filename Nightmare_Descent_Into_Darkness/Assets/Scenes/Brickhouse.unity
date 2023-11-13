@@ -18970,6 +18970,7 @@ MonoBehaviour:
   enemy: {fileID: 1306892468}
   anim: {fileID: 1306892472}
   wraith: {fileID: 1863189258}
+  door: {fileID: 1452384640}
   detectionRange: 2
 --- !u!4 &1306892471 stripped
 Transform:
