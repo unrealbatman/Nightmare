@@ -46,6 +46,10 @@ public class AIController : MonoBehaviour
     public float fovAngle;
     public float lineOfSightRadius = 180f;
 
+    public AudioSource audioSource;
+    public AudioClip patrolClip;
+    public AudioClip chaseClip;
+    public AudioClip searchClip;
     private Animator animator;
 
     private bool canTransition = true; // Flag for transition cooldown
@@ -81,13 +85,16 @@ public class AIController : MonoBehaviour
         {
             case State.Patrol:
                 animator.SetTrigger("Patrol");
+                audioSource.clip = patrolClip;
                 PatrolUpdate();
                 break;
             case State.Chase:
                 animator.ResetTrigger("Patrol");
+                audioSource.clip = chaseClip;
                 ChaseUpdate();
                 break;
             case State.Search:
+                audioSource.clip = searchClip;
                 animator.ResetTrigger("Patrol");
                 SearchUpdate();
                 break;
