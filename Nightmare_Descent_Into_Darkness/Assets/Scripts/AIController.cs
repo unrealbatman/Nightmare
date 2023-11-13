@@ -1,7 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class AIController : MonoBehaviour
 {
@@ -321,7 +324,9 @@ public class AIController : MonoBehaviour
             canTransition = true;
         }
 
-        void OnDrawGizmosSelected()
+
+#if UNITY_EDITOR
+    void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, detectionRadius);
@@ -330,6 +335,6 @@ public class AIController : MonoBehaviour
 /*            Debug.DrawRay(transform.position, -transform.forward.normalized * lineOfSightRadius, Color.blue, 5f);
 */
         }
+#endif
 
-    
 }
