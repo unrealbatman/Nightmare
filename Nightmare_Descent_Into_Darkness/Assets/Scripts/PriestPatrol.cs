@@ -23,26 +23,35 @@ public class PriestPatrol : MonoBehaviour
     private int initRandomWaypoint;
     private int currentWaypointIndex;
 
-   
+
 
     public float agentMoveSpeed = 0.5f;
 
 
-    [Range(0, 360)]
-    public float fovAngle;
-    public float lineOfSightRadius = 180f;
 
-    public AudioSource audioSource;
-    public AudioClip patrolClip;
-    public AudioClip footStep;
-    private Animator animator;
 
+    public AudioSource footStepSource;
+    public AudioSource voiceSource;
+
+    public AudioClip zombieVoice1;
+    public AudioClip zombieVoice2;
+    public AudioClip zombieVoice3;
+    private AudioClip[] voices;
+
+private Animator animator;
+    [SerializeField]
+    private float _waitTime = 50f; // in seconds
+    private float _waitCounter = 0f;
+    private bool _waiting = false;
 
     void Start()
     {
+        voices = new AudioClip[3];
+        voices[0] = zombieVoice1;
+        voices[1] = zombieVoice2;
+        voices[2] = zombieVoice3;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-
         // Initialize with initial state
         Waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
 
@@ -58,19 +67,58 @@ public class PriestPatrol : MonoBehaviour
         currentWaypointIndex = initRandomWaypoint;
         agent.SetDestination(Waypoints[initRandomWaypoint].transform.position);
 
+        StartCoroutine(PlayAudioEveryTenSeconds());
 
     }
+    IEnumerator PlayAudioEveryTenSeconds()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(8f); // Wait for 10 seconds
 
+            // Play the audio clip
+            
+                if(!voiceSource.isPlaying) {
+
+                voiceSource.clip = voices[(int)Random.Range(0, 3)];
+                    voiceSource.Play();
+                }
+              
+            
+        }
+    }
     void Update()
     {
 
         PatrolUpdate();
-        CheckLineOfSight();
     }
 
     void PatrolUpdate()
     {
-  
+        if (_waiting)
+        {
+            agent.isStopped = true;
+            //look around animation
+            _waitCounter += Time.deltaTime;
+            if (_waitCounter < _waitTime)
+            {
+                animator.ResetTrigger("Patrol");
+                animator.SetTrigger("LookAround");
+                return;
+            }
+
+            _waiting = false;
+        }
+        else
+        {
+            agent.isStopped = false;
+            animator.SetTrigger("Patrol");
+            animator.ResetTrigger("LookAround");
+            if (!footStepSource.isPlaying)
+            {
+                footStepSource.Play();
+            }
+        }
 
         Transform wp = Waypoints[currentWaypointIndex].transform;
         if (!agent.pathPending && agent.remainingDistance < 0.1f)
@@ -80,7 +128,8 @@ public class PriestPatrol : MonoBehaviour
                 return;
 
             transform.position = wp.position;
-            
+            _waitCounter = 0f;
+            _waiting = true;
 
             // Choose the next point in the array as the destination,
             // cycling to the start if necessary.
@@ -103,42 +152,14 @@ public class PriestPatrol : MonoBehaviour
     }
 
 
-      
 
- 
 
-    void CheckLineOfSight()
-    {
 
-    float signedAngle = Vector3.Angle(
-        -transform.forward,
-        player.position - transform.position);
+}
 
-    if (Mathf.Abs(signedAngle) < fovAngle / 2)
-    {
-        Debug.Log("I can sense the player");
-
-    }
-    else
-    {
-        //Debug.Log("I cant see the player");
-                    
-    }
-
-    return; // Early exit after processing the player
-    }
-        
 
      
  
 
 
-#if UNITY_EDITOR
-    void OnDrawGizmosSelected()
-        {
-            Handles.color = new Color(0, 1, 0, 0.3f);
-            Handles.DrawSolidArc(transform.position, transform.up, Quaternion.AngleAxis(-fovAngle / 2f,transform.up) * -transform.forward, fovAngle,lineOfSightRadius);
-        }
-#endif
 
-}

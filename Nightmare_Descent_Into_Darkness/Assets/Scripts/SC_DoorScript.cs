@@ -17,11 +17,13 @@ public class SC_DoorScript : MonoBehaviour
 
     public float closeDelay = 2.0f;
 
+    private AudioSource audioSource;
+
     void Start()
     {
         defaultRotationAngle = transform.localEulerAngles.y;
         currentRotationAngle = transform.localEulerAngles.y;
-
+        audioSource = GetComponent<AudioSource>();
         GetComponent<SphereCollider>().isTrigger = true;
     }
 
@@ -68,6 +70,7 @@ public class SC_DoorScript : MonoBehaviour
             {
                 doorOpenAngle = Mathf.Abs(doorOpenAngle); // Open outward
             }
+            audioSource.PlayOneShot(audioSource.clip);
         }
     }
 
