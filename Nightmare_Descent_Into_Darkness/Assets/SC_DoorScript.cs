@@ -1,39 +1,30 @@
-//Make an empty GameObject and call it "Door"
-//Drag and drop your Door model into Scene and rename it to "Body"
-//Make sure that the "Door" Object is at the side of the "Body" object (The place where a Door Hinge should be)
-//Move the "Body" Object inside "Door"
-//Add a Collider (preferably SphereCollider) to "Door" object and make it bigger then the "Body" model
-//Assign this script to a "Door" Object (the one with a Trigger Collider)
-//Make sure the main Character is tagged "Player"
-//Upon walking into trigger area press "F" to open / close the door
-
 using UnityEngine;
 
 public class SC_DoorScript : MonoBehaviour
 {
-    // Smoothly open a door
-    public AnimationCurve openSpeedCurve = new AnimationCurve(new Keyframe[] { new Keyframe(0, 1, 0, 0), new Keyframe(0.8f, 1, 0, 0), new Keyframe(1, 0, 0, 0) }); //Contols the open speed at a specific time (ex. the door opens fast at the start then slows down at the end)
-    public float openSpeedMultiplier = 2.0f; //Increasing this value will make the door open faster
-    public float doorOpenAngle = 90.0f; //Global door open speed that will multiply the openSpeedCurve
+    public AnimationCurve openSpeedCurve = new AnimationCurve(new Keyframe[] { new Keyframe(0, 1, 0, 0), new Keyframe(0.8f, 1, 0, 0), new Keyframe(1, 0, 0, 0) });
+    public float openSpeedMultiplier = 2.0f;
+    public float doorOpenAngle = 90.0f;
 
     bool open = false;
     bool enter = false;
+    bool hasEntered = false;
+    int aiInsideCount = 0; // Counter to keep track of the number of AI inside
 
     float defaultRotationAngle;
     float currentRotationAngle;
     float openTime = 0;
+
+    public float closeDelay = 2.0f;
 
     void Start()
     {
         defaultRotationAngle = transform.localEulerAngles.y;
         currentRotationAngle = transform.localEulerAngles.y;
 
-        //Debug.Log(GetComponent<SphereCollider>());
-        //Set Collider as trigger
         GetComponent<SphereCollider>().isTrigger = true;
     }
 
-    // Main function
     void Update()
     {
         if (openTime < 1)
@@ -47,35 +38,60 @@ public class SC_DoorScript : MonoBehaviour
             open = !open;
             currentRotationAngle = transform.localEulerAngles.y;
             openTime = 0;
+
+            if (!hasEntered)
+            {
+                hasEntered = true;
+                Invoke("CloseDoor", closeDelay);
+            }
         }
     }
 
-    // Display a simple info message when player is inside the trigger area (This is for testing purposes only so you can remove it)
-/*    void OnGUI()
-    {
-        if (enter)
-        {
-            GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 100, 155, 30), "Press 'F' to " + (open ? "close" : "open") + " the door");
-        }
-    }*/
-    //
-
-    // Activate the Main function when Player enter the trigger area
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("AI"))
         {
-            Debug.Log("Door Overlap");
+            aiInsideCount++; // Increment the counter
             enter = true;
+
+            // Calculate the relative direction of the AI to the door
+            Vector3 doorForward = transform.forward;
+            Vector3 aiToDoor = other.transform.position - transform.position;
+            float dotProduct = Vector3.Dot(doorForward, aiToDoor);
+
+            // Apply opposite rotation based on the AI's position relative to the door
+            if (dotProduct > 0) // AI is in front of the door
+            {
+                doorOpenAngle = -Mathf.Abs(doorOpenAngle); // Open inward
+            }
+            else // AI is behind the door
+            {
+                doorOpenAngle = Mathf.Abs(doorOpenAngle); // Open outward
+            }
         }
     }
 
-    // Deactivate the Main function when Player exit the trigger area
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("AI"))
         {
-            enter = false;
+            aiInsideCount--; // Decrement the counter
+            if (aiInsideCount <= 0)
+            {
+                enter = false;
+                aiInsideCount = 0; // Reset the counter
+            }
+        }
+    }
+
+    void CloseDoor()
+    {
+        if (aiInsideCount <= 0) // Check if there are no AI inside before closing
+        {
+            open = false;
+            currentRotationAngle = transform.localEulerAngles.y;
+            openTime = 0;
+            hasEntered = false;
         }
     }
 }
