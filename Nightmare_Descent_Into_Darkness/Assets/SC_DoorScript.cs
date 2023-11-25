@@ -28,8 +28,9 @@ public class SC_DoorScript : MonoBehaviour
         defaultRotationAngle = transform.localEulerAngles.y;
         currentRotationAngle = transform.localEulerAngles.y;
 
+        //Debug.Log(GetComponent<SphereCollider>());
         //Set Collider as trigger
-        GetComponent<Collider>().isTrigger = true;
+        GetComponent<SphereCollider>().isTrigger = true;
     }
 
     // Main function
@@ -41,7 +42,7 @@ public class SC_DoorScript : MonoBehaviour
         }
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.LerpAngle(currentRotationAngle, defaultRotationAngle + (open ? doorOpenAngle : 0), openTime), transform.localEulerAngles.z);
 
-        if (Input.GetKeyDown(KeyCode.F) && enter)
+        if (enter)
         {
             open = !open;
             currentRotationAngle = transform.localEulerAngles.y;
@@ -50,20 +51,21 @@ public class SC_DoorScript : MonoBehaviour
     }
 
     // Display a simple info message when player is inside the trigger area (This is for testing purposes only so you can remove it)
-    void OnGUI()
+/*    void OnGUI()
     {
         if (enter)
         {
             GUI.Label(new Rect(Screen.width / 2 - 75, Screen.height - 100, 155, 30), "Press 'F' to " + (open ? "close" : "open") + " the door");
         }
-    }
+    }*/
     //
 
     // Activate the Main function when Player enter the trigger area
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("AI"))
         {
+            Debug.Log("Door Overlap");
             enter = true;
         }
     }
@@ -71,7 +73,7 @@ public class SC_DoorScript : MonoBehaviour
     // Deactivate the Main function when Player exit the trigger area
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("AI"))
         {
             enter = false;
         }

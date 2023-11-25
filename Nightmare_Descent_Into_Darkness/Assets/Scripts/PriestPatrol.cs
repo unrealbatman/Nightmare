@@ -121,7 +121,7 @@ public class PriestPatrol : MonoBehaviour
     }
     else
     {
-        Debug.Log("I cant see the player");
+        //Debug.Log("I cant see the player");
                     
     }
 
