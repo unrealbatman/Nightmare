@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10427899, g: 0.09062173, b: 0.0752257, a: 1}
+  m_IndirectSpecularColor: {r: 0.104278825, g: 0.09062167, b: 0.0752257, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8290,6 +8290,8 @@ MonoBehaviour:
   - {fileID: 1215545402}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!1001 &235460929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10414,6 +10416,8 @@ MonoBehaviour:
   - {fileID: 1215545402}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!4 &380641026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 405862, guid: 7e9dc500b042d594f976c40103e5aa08, type: 3}
@@ -15599,9 +15603,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a347eaea67e43e9b62280d84aec375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 715670531}
+  ghostTransform: {fileID: 1306892471}
   audioSource: {fileID: 460992301}
   minTime: 8
   maxTime: 20
+  maxDistance: 30
 --- !u!1001 &485350692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16178,7 +16185,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.4056604, g: 0.3671572, b: 0.26214847, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -16312,6 +16319,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 427490, guid: eaaa713946d21c349acbc0f8b739f316, type: 3}
   m_PrefabInstance: {fileID: 2078489788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &715670531 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5393215578589016641, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 1172293417}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &721983206
 PrefabInstance:
@@ -19910,6 +19922,8 @@ MonoBehaviour:
   - {fileID: 1215545402}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!1001 &1119305444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20051,6 +20065,10 @@ PrefabInstance:
       propertyPath: sprint
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5420857361349278248, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: CinemachineCameraTarget
+      value: 
+      objectReference: {fileID: 101112939}
     - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: Grounded
       value: 1
@@ -20737,6 +20755,8 @@ MonoBehaviour:
   - {fileID: 338493493}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!1001 &1326275201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21635,6 +21655,8 @@ MonoBehaviour:
   - {fileID: 1215545402}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!4 &1369707233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 409786, guid: 32d75b8d1b966c6489dd7b9cea692094, type: 3}
@@ -22657,6 +22679,8 @@ MonoBehaviour:
   - {fileID: 1940249241}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!1 &1593800616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
@@ -22688,6 +22712,8 @@ MonoBehaviour:
   - {fileID: 338493493}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!1001 &1612613093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23968,6 +23994,8 @@ MonoBehaviour:
   - {fileID: 1215545402}
   speed: 1
   thresholdDistance: 0.1
+  rotateZ: 0
+  rotateY: 1
 --- !u!4 &1752684864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 474340, guid: 7c026980fc17fa642b7a22557ebb0007, type: 3}
