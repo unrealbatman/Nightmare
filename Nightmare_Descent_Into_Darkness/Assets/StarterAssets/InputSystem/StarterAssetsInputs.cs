@@ -21,8 +21,18 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+
+		public float interactRadius = 1.0f;
+
+        private RaycastHit[] hit = new RaycastHit[1];
+
+
+
+        [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
+        public GameObject CinemachineCameraTarget;
+
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -52,10 +62,15 @@ namespace StarterAssets
 			//Debug.Log(value.isPressed);
 			CrouchInput(value.isPressed);
 		}
+        public void OnInteract(InputValue value)
+        {
+            //Debug.Log(value.isPressed);
+            InteractInput(value.isPressed);
+        }
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -93,6 +108,24 @@ namespace StarterAssets
 				crouch = !crouch;
 			}
 		}
-	}
+        private void InteractInput(bool value)
+        {
+            var ray = new Ray(CinemachineCameraTarget.transform.position, CinemachineCameraTarget.transform.forward);
+            // ray-cast for interables
+            int hits = Physics.RaycastNonAlloc(ray, hit, interactRadius, LayerMask.GetMask("LevelEntry"));
+			Debug.Log("hits: " + hits);
+            if (hits > 0)
+            {
+				GameManager.Instance.LoadLevel();
+            }
+        }
+        private void OnDrawGizmos()
+        {
+
+            // Draw a blue line from the object's position to a point above it
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(CinemachineCameraTarget.transform.position, CinemachineCameraTarget.transform.position +interactRadius * CinemachineCameraTarget.transform.forward );
+        }
+    }
 	
 }

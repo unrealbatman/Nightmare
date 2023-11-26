@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 59d7a433eaa2c0f4fb3279ad6235e23a
+  - enabled: 1
     path: Assets/Scenes/Brickhouse.unity
     guid: 29e074d8f75af48d0966e8acfd9137d5
   m_configObjects:

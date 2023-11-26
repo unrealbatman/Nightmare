@@ -60,8 +60,10 @@ namespace StarterAssets
 		public float CrouchingSmoothTime;
 		[Tooltip("Crouching speed ratio to the normal speed")]
 		public float CrouchingSpeedRatio = 0.33f;
-		// cinemachine
-		private float _cinemachineTargetPitch;
+
+
+        // cinemachine
+        private float _cinemachineTargetPitch;
 
 		// player
 		private float _speed;
@@ -98,7 +100,9 @@ namespace StarterAssets
 			}
 		}
 
-		private void Awake()
+
+
+        private void Awake()
 		{
 			// get a reference to our main camera
 			if (_mainCamera == null)
@@ -129,6 +133,10 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+
+            
+
+			
 		}
 
 		private void LateUpdate()
