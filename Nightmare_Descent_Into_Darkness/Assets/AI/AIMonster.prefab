@@ -159,10 +159,10 @@ MonoBehaviour:
   detectionRadius: 60
   fovAngle: 136
   lineOfSightRadius: 65
-  audioSource: {fileID: 0}
-  patrolClip: {fileID: 0}
-  chaseClip: {fileID: 0}
-  searchClip: {fileID: 0}
+  audioSource: {fileID: 8527668287295456983}
+  patrolClip: {fileID: 8300000, guid: 8a06cba5fa8ebee43ab6541eb4b55db9, type: 3}
+  chaseClip: {fileID: 8300000, guid: 55db34c86831235468e4af36dad0126a, type: 3}
+  searchClip: {fileID: 8300000, guid: 75a52eda460b4462db47439d23ff5c1b, type: 3}
 --- !u!136 &4445016587932507625
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -221,14 +221,14 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 256
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 58.761414
+  MaxDistance: 393.05447
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -263,7 +263,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -278,7 +278,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
