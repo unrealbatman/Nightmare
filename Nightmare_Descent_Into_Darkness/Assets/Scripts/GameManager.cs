@@ -13,12 +13,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-
+    struct SavePoint
+    {
+        public Vector3 position;
+            
+    };
     public const string MainScene = "Main";
 
     [SerializeField]
-    private FirstPersonController firstPersonController;
+    private GameObject firstPersonController;
     public static GameManager Instance { get; private set; }
+
+    private SavePoint savePoint = new SavePoint();
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -39,6 +45,7 @@ public class GameManager : MonoBehaviour
     // for visiting scenes in order
     public void LoadLevel()
     {
+        savePoint.position = firstPersonController.transform.position;
         SceneManager.LoadScene(RemainLevels[0]);
     }
 
@@ -51,6 +58,7 @@ public class GameManager : MonoBehaviour
     public void BackToMain()
     {
         SceneManager.LoadScene(MainScene);
+        firstPersonController.transform.position = savePoint.position;
     }
 
 
@@ -60,11 +68,11 @@ public class GameManager : MonoBehaviour
     }
     public void LockMove()
     {
-        firstPersonController.CanMove = false;
+        firstPersonController.GetComponent<FirstPersonController>().CanMove = false;
     }
 
     public void ReleaseMove()
     {
-        firstPersonController.CanMove = true;
+        firstPersonController.GetComponent<FirstPersonController>().CanMove = true;
     }
 }
