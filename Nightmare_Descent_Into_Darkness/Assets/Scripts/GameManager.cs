@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleFailure()
     {
-
+        Debug.Log("Failed");
     }
     public void LockMove()
     {
