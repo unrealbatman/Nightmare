@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 639618092}
-  m_IndirectSpecularColor: {r: 0.0040923613, g: 0.00022393918, b: 0.00000005724309, a: 1}
+  m_IndirectSpecularColor: {r: 0.004092359, g: 0.00022393926, b: 0.00000005724309, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1445,25 +1445,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 72956162}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &425057785 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9204910401025090939, guid: 9bdbe5e160ee8424ba6d6a35af3ba2e7, type: 3}
-  m_PrefabInstance: {fileID: 823476932}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &425057790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 425057785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d1c49145ddb8c4b8d0d31659c06339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intensity: 0.1
-  frequency: 10
 --- !u!1 &452076634 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
@@ -1643,6 +1624,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42e1ecb984df344f5ab0ce2b8224b664, type: 3}
+      propertyPath: m_Name
+      value: Rokoko_Alchemy_Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 42e1ecb984df344f5ab0ce2b8224b664, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -6625169219954500253, guid: c543918830e294e149899456de19cc3b, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1660,14 +1649,6 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 699470992820773265, guid: c543918830e294e149899456de19cc3b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 42e1ecb984df344f5ab0ce2b8224b664, type: 3}
-      propertyPath: m_Name
-      value: Rokoko_Alchemy_Table
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 42e1ecb984df344f5ab0ce2b8224b664, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
@@ -2409,9 +2390,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7390613332956822834, guid: 9bdbe5e160ee8424ba6d6a35af3ba2e7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 823476935}
-    - targetCorrespondingSourceObject: {fileID: 9204910401025090939, guid: 9bdbe5e160ee8424ba6d6a35af3ba2e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 425057790}
   m_SourcePrefab: {fileID: 100100000, guid: 9bdbe5e160ee8424ba6d6a35af3ba2e7, type: 3}
 --- !u!1 &823476933 stripped
 GameObject:
@@ -3869,10 +3847,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -9018902996084835853, guid: 6cde9b6547b324f8d966fb6a51f6df7f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cd70779b50234021bbc32e88a4c6a4b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1
@@ -3925,19 +3899,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7029948723529949830, guid: 6cde9b6547b324f8d966fb6a51f6df7f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 332399534021830002, guid: 6cde9b6547b324f8d966fb6a51f6df7f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8cd70779b50234021bbc32e88a4c6a4b, type: 3}
       propertyPath: m_Name
       value: candlestick
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8cd70779b50234021bbc32e88a4c6a4b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -9018902996084835853, guid: 6cde9b6547b324f8d966fb6a51f6df7f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7029948723529949830, guid: 6cde9b6547b324f8d966fb6a51f6df7f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 332399534021830002, guid: 6cde9b6547b324f8d966fb6a51f6df7f, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
@@ -5362,7 +5340,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.95
+  m_fontSize: 18
   m_fontSizeBase: 7.01
   m_fontWeight: 400
   m_enableAutoSizing: 1
