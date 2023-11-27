@@ -10,6 +10,11 @@ public class KeyPickUp : MonoBehaviour
     public TextMeshProUGUI doorText;
     public MeshRenderer key;
 
+    void Start()
+    {
+        PlayerPrefs.SetInt("Level1key", 0);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

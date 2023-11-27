@@ -45,7 +45,7 @@ public class SC_DoorScript : MonoBehaviour
         {
             OpenDoor();
         }
-        else if (enter && isPlayer)
+        else if (enter && isPlayer && PlayerPrefs.GetInt("Level1key") == 1)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
