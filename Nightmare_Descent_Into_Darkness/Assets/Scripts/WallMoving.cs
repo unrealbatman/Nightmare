@@ -7,7 +7,7 @@ public class WallMoving : MonoBehaviour
 {
     public GameObject wall;
     public Vector3 direction;
-    public float speed = 0.0075f;
+    public float speed = 0.01f;
 
     [SerializeField]
     private bool moving = false;
@@ -34,7 +34,7 @@ public class WallMoving : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

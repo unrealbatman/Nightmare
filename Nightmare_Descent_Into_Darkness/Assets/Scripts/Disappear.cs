@@ -7,6 +7,7 @@ public class Disappear : MonoBehaviour
 {
     public GameObject hide;
     public GameObject show;
+    public AudioSource audioSource;
     private bool hasChecked = false;
 
 
@@ -19,8 +20,10 @@ public class Disappear : MonoBehaviour
     {
         if (hasChecked)
         {
+            
             hide.SetActive(false);
             show.SetActive(true);
+            audioSource.Play();
         }
     }
 }

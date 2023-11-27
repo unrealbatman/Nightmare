@@ -32,7 +32,7 @@ public class SpikeLevelManager : MonoBehaviour
         // public static instance exposed
         Instance = this;
 
-        
+
     }
     // Start is called before the first frame update
     void Start()
@@ -57,7 +57,7 @@ public class SpikeLevelManager : MonoBehaviour
         }
 
         GameManager.Instance.LockMove();
-        StartCoroutine(Opening());
+        StartCoroutine(Overture());
         
     }
 
@@ -65,6 +65,11 @@ public class SpikeLevelManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    IEnumerator Overture() { 
+        yield return new WaitForSeconds(2f);
+        yield return Opening();
     }
 
     IEnumerator Opening()
