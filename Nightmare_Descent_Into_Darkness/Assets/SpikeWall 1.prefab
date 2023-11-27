@@ -45,9 +45,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3246246549072379777}
     m_Modifications:
+    - target: {fileID: 2046346734731189623, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2191086731828923070, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
       propertyPath: m_Name
       value: Spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191086731828923070, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4962253283320570865, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
       propertyPath: m_LocalScale.z
@@ -111,9 +119,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3246246549072379777}
     m_Modifications:
+    - target: {fileID: 2046346734731189623, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2191086731828923070, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
       propertyPath: m_Name
       value: Spike (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191086731828923070, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4962253283320570865, guid: 92fb9ddcac3f4bd4495e0a0dad006668, type: 3}
       propertyPath: m_LocalScale.z
@@ -181,6 +197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Villa1_Wall_Int_A
       objectReference: {fileID: 0}
+    - target: {fileID: 146654, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 418322, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2299995
@@ -242,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 146654, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
       propertyPath: m_Name
       value: Villa1_Wall_Int_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 146654, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418322, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -305,6 +329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Villa1_Wall_Int_A
       objectReference: {fileID: 0}
+    - target: {fileID: 146654, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 418322, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2299995
@@ -366,6 +394,10 @@ PrefabInstance:
     - target: {fileID: 146654, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
       propertyPath: m_Name
       value: Villa1_Wall_Int_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 146654, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418322, guid: b3697fca2cda39f418b6b897bcf90cf6, type: 3}
       propertyPath: m_LocalPosition.x
