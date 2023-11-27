@@ -58,7 +58,7 @@ public class SpikeLevelManager : MonoBehaviour
 
         GameManager.Instance.LockMove();
         StartCoroutine(Opening());
-
+        
     }
 
     // Update is called once per frame
@@ -101,7 +101,7 @@ public class SpikeLevelManager : MonoBehaviour
             }
             if (i % 2 == 0)
             {
-                
+        
                 turnOnLight(_leftWallLights[i] );
                 yield return new WaitForSeconds(interval);
                 interval -= speedDecay;

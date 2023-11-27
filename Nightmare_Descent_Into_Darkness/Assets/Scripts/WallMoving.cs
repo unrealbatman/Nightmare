@@ -11,7 +11,7 @@ public class WallMoving : MonoBehaviour
 
     [SerializeField]
     private bool moving = false;
-
+    
     private AudioSource[] sources;
     private Coroutine becomingFaster;
     
@@ -19,7 +19,7 @@ public class WallMoving : MonoBehaviour
     {
         sources = GetComponents<AudioSource>();
         SpikeLevelTrigger.OnLevelTrigger += StartMove;
-
+            
     }
     private void OnEnable()
     {
@@ -44,7 +44,8 @@ public class WallMoving : MonoBehaviour
         {
             gameObject.transform.Translate(direction.normalized * speed, Space.World);
 
-           
+            // ash particle can be added
+
 
             // camera shake
 

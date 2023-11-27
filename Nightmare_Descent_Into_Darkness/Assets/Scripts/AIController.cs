@@ -102,9 +102,13 @@ public class AIController : MonoBehaviour
                 AttackUpdate();
                 break;
         }
+        if(!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
 
 
-        Debug.Log("Current State: " + currentState);
+        //Debug.Log("Current State: " + currentState);
         TransitionLogic();
 
     }
@@ -274,7 +278,7 @@ public class AIController : MonoBehaviour
                 player = collider.transform;
                 playerDetected = true;
 
-                Debug.Log("I can sense the player");
+                //Debug.Log("I can sense the player");
 
                 if (agent.remainingDistance > 60)
                 {
@@ -302,7 +306,7 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("I cant see the player");
+                    //Debug.Log("I cant see the player");
                     currentState = State.Search;
                     animator.ResetTrigger("Chase");
                     animator.SetTrigger("Search");
@@ -318,7 +322,7 @@ public class AIController : MonoBehaviour
             currentState = State.Search;
             animator.ResetTrigger("Chase");
             animator.SetTrigger("Search");
-            Debug.Log("Player exited the detection radius.");
+            //Debug.Log("Player exited the detection radius.");
         }
     }
 
