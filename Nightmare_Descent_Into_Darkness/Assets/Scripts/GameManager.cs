@@ -53,6 +53,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(MainScene);
     }
 
+
+    public void HandleFailure()
+    {
+
+    }
     public void LockMove()
     {
         firstPersonController.CanMove = false;
