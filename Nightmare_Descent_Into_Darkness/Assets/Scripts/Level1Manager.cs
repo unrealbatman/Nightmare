@@ -5,19 +5,22 @@ using UnityEngine;
 public class Level1Manager : MonoBehaviour
 {
     bool open=false;
+   
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PlayerPrefs.GetInt("Level1Key") == 1)
+        if(PlayerPrefs.GetInt("Level1key") == 1)
         {
-            if (open)
+
+            if (open && PlayerPrefs.GetInt("Level1key")==1 && Input.GetKeyDown(KeyCode.E))
             {
+
                 GameManager.Instance.BackToMain();
             }
         }
@@ -30,6 +33,13 @@ public class Level1Manager : MonoBehaviour
             open = true;
         }
         else
+        {
+            open = false;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
         {
             open = false;
         }
