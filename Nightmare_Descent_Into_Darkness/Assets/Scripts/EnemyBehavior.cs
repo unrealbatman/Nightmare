@@ -7,6 +7,7 @@ public class EnemyBehavior : MonoBehaviour
     public Animator anim;
     public AudioSource wraith;
     public Transform door;
+    public GameObject key;
 
     public float detectionRange = 2f;
 
@@ -21,6 +22,7 @@ public class EnemyBehavior : MonoBehaviour
             anim.SetTrigger("attack");
             wraith.PlayOneShot(wraith.clip);
             door.rotation = Quaternion.Euler(0, 90, 0);
+            key.SetActive(true);
         }
     }
 }

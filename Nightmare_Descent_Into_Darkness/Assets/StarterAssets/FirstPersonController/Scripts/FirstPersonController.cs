@@ -61,6 +61,9 @@ namespace StarterAssets
 		[Tooltip("Crouching speed ratio to the normal speed")]
 		public float CrouchingSpeedRatio = 0.33f;
 
+		[Tooltip("Indicating whether player can move")]
+		public bool CanMove = true;
+
 
         // cinemachine
         private float _cinemachineTargetPitch;
@@ -221,7 +224,11 @@ namespace StarterAssets
 
             }
 			// move the player
-			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			if (CanMove)
+			{
+                _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            }
+
 		}
 
 
