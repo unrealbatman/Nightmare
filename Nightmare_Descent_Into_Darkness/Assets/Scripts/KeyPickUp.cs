@@ -32,6 +32,7 @@ public class KeyPickUp : MonoBehaviour
         {
             keyText.enabled = false;
             key.enabled = false;
+            PlayerPrefs.SetInt("Level1key", 1);
             doorText.enabled = !keyText.enabled;
         }
     }
