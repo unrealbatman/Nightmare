@@ -18,14 +18,18 @@ public class SC_DoorScript : MonoBehaviour
     float openTime = 0;
     bool isPlayer=false;
     private AudioSource audioSource;
-
     void Start()
     {
         doorInteractText.gameObject.SetActive(false);
         defaultRotationAngle = transform.localEulerAngles.y;
         currentRotationAngle = transform.localEulerAngles.y;
-        audioSource = GetComponent<AudioSource>();
+
+        
+            audioSource = GetComponent<AudioSource>();
+
+       
         GetComponent<SphereCollider>().isTrigger = true;
+
     }
 
     void Update()
@@ -72,10 +76,12 @@ public class SC_DoorScript : MonoBehaviour
         {
             enter = true;
             isPlayer = true;
+            
             doorInteractText.gameObject.SetActive(true);
             HandleDoorForward(other);
 
         }
+      
     }
 
     private void HandleDoorForward(Collider other)
