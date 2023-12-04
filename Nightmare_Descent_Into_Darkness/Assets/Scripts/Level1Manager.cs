@@ -1,47 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Level1Manager : MonoBehaviour
 {
-    bool open=false;
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+    public GameObject exitDoor;
+    private CheckTriggerDoor triggerDoor;
+    private bool canDoorOpen = false; // Flag indicating the door state
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if(PlayerPrefs.GetInt("Level1key") == 1)
+        triggerDoor = exitDoor.GetComponent<CheckTriggerDoor>();
+        if (triggerDoor != null)
         {
-
-            if (open && PlayerPrefs.GetInt("Level1key")==1 && Input.GetKeyDown(KeyCode.E))
-            {
-
-                GameManager.Instance.BackToMain();
-            }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            open = true;
+            triggerDoor.OnDoorStateChanged += HandleDoorStateChanged;
         }
         else
         {
-            open = false;
+            Debug.LogError("CheckTriggerDoor component not found on exitDoor.");
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    private void OnDestroy()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (triggerDoor != null)
         {
-            open = false;
+            triggerDoor.OnDoorStateChanged -= HandleDoorStateChanged;
         }
+    }
+
+    private void Update()
+    {
+        // Check if the door is open and 'E' key is pressed
+        if (canDoorOpen && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Door is open. E key pressed.");
+            GameManager.Instance.BackToMain();
+        }
+    }
+
+    private void HandleDoorStateChanged(bool isOpen)
+    {
+        // Update the door state flag based on the event
+        canDoorOpen = isOpen;
     }
 }

@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class KeyPickUp : MonoBehaviour
 {
     public TextMeshProUGUI keyText;
-    public TextMeshProUGUI doorText;
     public MeshRenderer key;
+
+    public delegate void KeyPickedUp();
+    public static event KeyPickedUp OnKeyPickedUp;
 
     void Start()
     {
@@ -33,12 +32,14 @@ public class KeyPickUp : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && keyText.enabled == true)
+        if (Input.GetKeyDown(KeyCode.E) && keyText.enabled == true)
         {
             keyText.enabled = false;
             key.enabled = false;
             PlayerPrefs.SetInt("Level1key", 1);
-            doorText.enabled = !keyText.enabled;
+            PlayerPrefs.Save();
+            Debug.Log("Key picked up! PlayerPrefs set to 1.");
+            OnKeyPickedUp?.Invoke();
         }
     }
 }
