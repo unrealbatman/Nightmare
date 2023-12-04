@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+
     public List<string> RemainLevels = new List<string>();
     public List<string> PassedLevels= new List<string>();
 
@@ -74,5 +75,17 @@ public class GameManager : MonoBehaviour
     public void ReleaseMove()
     {
         firstPersonController.GetComponent<FirstPersonController>().CanMove = true;
+    }
+
+    public void TeleportPlayer(Vector3 destination)
+    {
+        if (firstPersonController != null)
+        {
+            firstPersonController.transform.position = destination;
+        }
+        else
+        {
+            Debug.LogWarning("First Person Controller not assigned for teleportation!");
+        }
     }
 }
