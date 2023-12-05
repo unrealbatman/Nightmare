@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoundsCheck : MonoBehaviour
 {
-    public TextMeshProUGUI outOfBoundsText;
+    public TextMeshProUGUI   outOfBoundsText;
  
     private void OnTriggerEnter(Collider other)
     {
