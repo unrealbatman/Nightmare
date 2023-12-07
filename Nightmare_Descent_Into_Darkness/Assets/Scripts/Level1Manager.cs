@@ -30,11 +30,17 @@ public class Level1Manager : MonoBehaviour
     private void Update()
     {
         // Check if the door is open and 'E' key is pressed
-        if (canDoorOpen && Input.GetKeyDown(KeyCode.E))
+        if (PlayerPrefs.GetInt("Level1key") == 1)
+        {
+            triggerDoor.open = true;
+        }
+            
+            if( canDoorOpen && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Door is open. E key pressed.");
             GameManager.Instance.BackToMain();
         }
+      
     }
 
     private void HandleDoorStateChanged(bool isOpen)

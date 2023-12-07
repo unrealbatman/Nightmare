@@ -10,10 +10,13 @@ public class CheckTriggerDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && PlayerPrefs.GetInt("Level1key") == 1)
+        if (other.gameObject.CompareTag("Player") )
         {
-            open = true;
-            doorInteractText.SetActive(true);
+            if(open)
+            {
+                doorInteractText.SetActive(true);
+
+            }
             OnDoorStateChanged?.Invoke(open);
         }
     }
@@ -22,7 +25,6 @@ public class CheckTriggerDoor : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            open = false;
             doorInteractText.SetActive(false);
             OnDoorStateChanged?.Invoke(open);
         }
