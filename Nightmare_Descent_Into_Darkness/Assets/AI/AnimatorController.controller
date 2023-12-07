@@ -202,7 +202,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Patrol
-  m_Speed: 2.5
+  m_Speed: 1.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 599648317476293507}
@@ -363,7 +363,7 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -454658811030550480}
-    m_Position: {x: 50, y: 270, z: 0}
+    m_Position: {x: 10, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1583568708969509307}
     m_Position: {x: 70, y: 580, z: 0}
