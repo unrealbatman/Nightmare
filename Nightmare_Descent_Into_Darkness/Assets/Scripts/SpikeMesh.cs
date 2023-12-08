@@ -53,7 +53,7 @@ public class SpikeMesh : MonoBehaviour
         // save mesh to assets
         var savePath = "Assets/" + "spikeMesh" + ".asset";
         Debug.Log("Saved Mesh to:" + savePath);
-        AssetDatabase.CreateAsset(mesh, savePath);
+        //AssetDatabase.CreateAsset(mesh, savePath);
     }
 
 }

@@ -7,7 +7,7 @@ public class Register : MonoBehaviour
 {   
     private Vector3 positionOffset = Vector3.zero;
 
-    
+    // register delegates of sceneloaded
     private void OnEnable()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
@@ -36,6 +36,7 @@ public class Register : MonoBehaviour
             return;
         }
 
+        // reference: https://stackoverflow.com/questions/66378459/unity-set-player-position-after-loading-scene
         positionOffset = restorePosition - transform.position;
         gameObject.GetComponent<CharacterController>().enabled = false;
         transform.position += positionOffset;

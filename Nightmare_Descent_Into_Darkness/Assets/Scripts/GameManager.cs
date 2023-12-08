@@ -64,15 +64,7 @@
         {
             Debug.Log("Failed");
         }
-        public void LockMove()
-        {
-            firstPersonController.GetComponent<FirstPersonController>().CanMove = false;
-        }
 
-        public void ReleaseMove()
-        {
-            firstPersonController.GetComponent<FirstPersonController>().CanMove = true;
-        }
 
         public Vector3  GetSavePoint()
         {
