@@ -3,7 +3,17 @@ guid: 42e1ecb984df344f5ab0ce2b8224b664
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bigparts_Shader
+    second: {fileID: 2100000, guid: aa3448e555f0cbd4fb0d6ee6c2115ef0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ornaments_Shader
+    second: {fileID: 2100000, guid: 0702400153e4f694492eaff4e1ae3ea5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

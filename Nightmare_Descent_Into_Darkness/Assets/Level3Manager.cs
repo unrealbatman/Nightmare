@@ -11,6 +11,8 @@ public enum ColorInterpolationType
     EaseOut
     // Add more interpolation types as needed
 }
+
+
 public class Level3Manager : MonoBehaviour
 {
     public GameObject[] materials;
@@ -90,4 +92,5 @@ public class Level3Manager : MonoBehaviour
             }
         }
     }
+
 }

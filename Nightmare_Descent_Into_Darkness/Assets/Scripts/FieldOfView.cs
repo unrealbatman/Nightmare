@@ -21,7 +21,6 @@ public class FieldOfView : MonoBehaviour {
 	Mesh viewMesh;
 
 	void Start() {
-#if UNITY_EDITOR
         viewMesh = new Mesh
         {
             name = "View Mesh"
@@ -29,7 +28,6 @@ public class FieldOfView : MonoBehaviour {
         viewMeshFilter.mesh = viewMesh;
 
         StartCoroutine("FindTargetsWithDelay", .2f);
-#endif   
 	}
 
 
@@ -41,9 +39,7 @@ public class FieldOfView : MonoBehaviour {
 	}
 
 	void LateUpdate() {
-#if UNITY_EDITOR
         DrawFieldOfView();
-#endif
 	}
 
 	void FindVisibleTargets() {

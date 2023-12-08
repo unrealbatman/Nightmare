@@ -35,6 +35,7 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _ColorMask: 15
+    - _Cutoff: 0
     - _EnableExternalAlpha: 0
     - _Stencil: 0
     - _StencilComp: 8
