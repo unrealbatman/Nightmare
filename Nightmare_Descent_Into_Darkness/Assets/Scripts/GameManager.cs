@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour{
 
     public Dictionary<GameObject, string> LevelMatch = new Dictionary<GameObject, string>();
 
-    public GameObject LastDoorInteracted = null;
+    //record the currentLevel
+    public string currentLevel = MainScene;
 
     private void Awake()
     {
@@ -44,8 +45,6 @@ public class GameManager : MonoBehaviour{
 
             
     }
-
- 
 
 
     // for visiting scenes in order
@@ -66,12 +65,13 @@ public class GameManager : MonoBehaviour{
     {
         savePoint.position = firstPersonController.transform.position;
         SceneManager.LoadScene(LevelMatch[door]);
-        LastDoorInteracted = door;
+        currentLevel = LevelMatch[door];
     }
 
     public void BackToMain()
     {
         SceneManager.LoadScene(MainScene);
+        currentLevel = MainScene;
     }
 
 
@@ -81,12 +81,10 @@ public class GameManager : MonoBehaviour{
         return savePoint.position;
     }
 
-    public void LevelFinish(GameObject door)
+    public void LevelFinish(string levelName)
     {
 
-
-        PassedLevels.Add(LevelMatch[door]);
-        LevelMatch.Remove(door);
+        PassedLevels.Add(levelName);
 
         // TODO: can trigger some level end effect here 
     }
