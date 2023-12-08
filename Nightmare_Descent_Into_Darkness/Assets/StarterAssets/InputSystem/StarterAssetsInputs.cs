@@ -116,7 +116,7 @@ namespace StarterAssets
 			Debug.Log("hits: " + hits);
             if (hits > 0)
             {
-				GameManager.Instance.LoadLevel();
+				GameManager.Instance.LoadLevel(hit[0].collider.gameObject);
             }
         }
         private void OnDrawGizmos()
