@@ -10,10 +10,7 @@
     public class GameManager : MonoBehaviour
     {
 
-
-
-
-    struct SavePoint
+        struct SavePoint
         {
             public Vector3 position;
             
@@ -21,7 +18,7 @@
         public const string MainScene = "Main";
 
         [SerializeField]
-        private GameObject firstPersonController;
+        public GameObject firstPersonController;
         public static GameManager Instance { get; private set; }
 
         private SavePoint savePoint = new SavePoint();
@@ -59,7 +56,7 @@
         public void BackToMain()
         {
             SceneManager.LoadScene(MainScene);
-            firstPersonController.transform.position = savePoint.position;
+            //firstPersonController.transform.position = savePoint.position;
         }
 
 
@@ -75,6 +72,11 @@
         public void ReleaseMove()
         {
             firstPersonController.GetComponent<FirstPersonController>().CanMove = true;
+        }
+
+        public Vector3  GetSavePoint()
+        {
+            return savePoint.position;
         }
 
         
