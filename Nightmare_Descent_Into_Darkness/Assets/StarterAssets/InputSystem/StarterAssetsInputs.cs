@@ -116,6 +116,8 @@ namespace StarterAssets
 			Debug.Log("hits: " + hits);
             if (hits > 0)
             {
+				Debug.Log(hit[0].collider.gameObject);
+				
 				GameManager.Instance.LoadLevel(hit[0].collider.gameObject);
             }
         }

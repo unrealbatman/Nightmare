@@ -59,7 +59,7 @@ public class SpikeLevelManager : MonoBehaviour
 
         LockMove();
         StartCoroutine(Overture());
-        
+
     }
 
     // Update is called once per frame

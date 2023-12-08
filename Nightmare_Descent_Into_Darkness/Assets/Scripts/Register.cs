@@ -41,9 +41,9 @@ public class Register : MonoBehaviour
         gameObject.GetComponent<CharacterController>().enabled = false;
         transform.position += positionOffset;
         gameObject.GetComponent<CharacterController>().enabled = true;
-        //Debug.Log("restore:" + restorePosition);
-        //Debug.Log("offset:" + positionOffset);
-        //Debug.Log(transform.position);
+        Debug.Log("restore:" + restorePosition);
+        Debug.Log("offset:" + positionOffset);
+        Debug.Log(transform.position);
     }
 
 }

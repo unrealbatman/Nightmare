@@ -22,14 +22,12 @@ public class GameManager : MonoBehaviour{
 
     private SavePoint savePoint = new SavePoint();
 
-    public List<string> RemainLevels = new List<string>();
+    public List<string> Levels = new List<string>();
     public List<string> PassedLevels = new List<string>();
 
-    public List<GameObject> Doors = new List<GameObject>();
+    public Dictionary<GameObject, string> LevelMatch = new Dictionary<GameObject, string>();
 
-    public Dictionary<GameObject, string> LevelMatch;
-
-    public GameObject LastDoorInteracted;
+    public GameObject LastDoorInteracted = null;
 
     private void Awake()
     {
@@ -44,11 +42,6 @@ public class GameManager : MonoBehaviour{
         // keep it across all scenes
         DontDestroyOnLoad(gameObject);
 
-        for(int i = 0; i < RemainLevels.Count; i++)
-        {
-            LevelMatch.Add(Doors[i], RemainLevels[i]);
-        }
-
             
     }
 
@@ -59,17 +52,19 @@ public class GameManager : MonoBehaviour{
     public void LoadLevel()
     {
         savePoint.position = firstPersonController.transform.position;
-        SceneManager.LoadScene(RemainLevels[0]);
+        SceneManager.LoadScene(Levels[0]);
     }
 
     // for test
     public void LoadLevel(string levelName)
     {
+        savePoint.position = firstPersonController.transform.position;
         SceneManager.LoadScene(levelName);
     }
 
     public void LoadLevel(GameObject door)
     {
+        savePoint.position = firstPersonController.transform.position;
         SceneManager.LoadScene(LevelMatch[door]);
         LastDoorInteracted = door;
     }
@@ -77,7 +72,6 @@ public class GameManager : MonoBehaviour{
     public void BackToMain()
     {
         SceneManager.LoadScene(MainScene);
-        //firstPersonController.transform.position = savePoint.position;
     }
 
 
