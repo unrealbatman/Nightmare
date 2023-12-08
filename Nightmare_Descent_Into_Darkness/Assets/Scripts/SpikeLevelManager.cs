@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,11 +17,11 @@ public class SpikeLevelManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> _rightWallLight;
 
+    public GameObject firstPersonController;
     public AudioClip lightOpeningAudio;
 
     public static SpikeLevelManager Instance { get; private set; }
 
-    public Collider LevelTrigger;
 
     private void Awake()
     {
@@ -56,9 +57,9 @@ public class SpikeLevelManager : MonoBehaviour
             light.GetComponent<AudioSource>().playOnAwake = false;
         }
 
-        GameManager.Instance.LockMove();
+        LockMove();
         StartCoroutine(Overture());
-        
+
     }
 
     // Update is called once per frame
@@ -67,6 +68,15 @@ public class SpikeLevelManager : MonoBehaviour
         
     }
 
+    public void LockMove()
+    {
+        firstPersonController.GetComponent<FirstPersonController>().CanMove = false;
+    }
+
+    public void ReleaseMove()
+    {
+        firstPersonController.GetComponent<FirstPersonController>().CanMove = true;
+    }
     IEnumerator Overture() { 
         yield return new WaitForSeconds(2f);
         yield return Opening();
@@ -143,7 +153,7 @@ public class SpikeLevelManager : MonoBehaviour
            
         
         //Release Move
-        GameManager.Instance.ReleaseMove();
+        ReleaseMove();
 
     }
 }

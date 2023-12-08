@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static TriggerDoorOpen;
 
 public class DoorManager_level2 : MonoBehaviour
 {
@@ -16,16 +17,22 @@ public class DoorManager_level2 : MonoBehaviour
     float defaultRotationAngle;
     float currentRotationAngle;
     float openTime = 0;
-    bool isPlayer=false;
+    [SerializeField]
     private AudioSource audioSource;
 
+    private void OnEnable()
+    {
+        TriggerDoorOpen.triggerDoorOpenDelegate += OpenDoor;
+    }
+
+    private void OnDisable()
+    {
+        TriggerDoorOpen.triggerDoorOpenDelegate -= OpenDoor;
+    }
     void Start()
     {
-        doorInteractText.gameObject.SetActive(false);
         defaultRotationAngle = transform.localEulerAngles.y;
         currentRotationAngle = transform.localEulerAngles.y;
-        audioSource = GetComponent<AudioSource>();
-        GetComponent<SphereCollider>().isTrigger = true;
     }
 
     void Update()
@@ -41,79 +48,17 @@ public class DoorManager_level2 : MonoBehaviour
         );
 
      
-        if (enter &&!isPlayer)
+        if (enter)
         {
+            audioSource.PlayOneShot(audioSource.clip);
             OpenDoor();
         }
-        else if (enter && isPlayer && PlayerPrefs.GetInt("Level2key") == 1)
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                OpenDoor();
-                audioSource.PlayOneShot(audioSource.clip);
-
-            }
-
-        }
+       
        
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("AI") )
-        {
-            enter = true;
-            isPlayer = false;
-            HandleDoorForward(other);
-            audioSource.PlayOneShot(audioSource.clip);
 
-        }
-        if (other.CompareTag("Player"))
-        {
-            enter = true;
-            isPlayer = true;
-            doorInteractText.gameObject.SetActive(true);
-            HandleDoorForward(other);
 
-        }
-    }
-
-    private void HandleDoorForward(Collider other)
-    {
-        entityInsideCount++; // Increment the counter
-
-        Vector3 doorForward = transform.forward;
-        Vector3 entityToDoor = other.transform.position - transform.position;
-        float dotProduct = Vector3.Dot(doorForward, entityToDoor);
-
-        if (dotProduct > 0)
-        {
-            doorOpenAngle = -Mathf.Abs(doorOpenAngle);
-        }
-        else
-        {
-            doorOpenAngle = Mathf.Abs(doorOpenAngle);
-        }
-
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("AI")||other.CompareTag("Player")) 
-        {
-            doorInteractText.gameObject.SetActive(false);
-            entityInsideCount--; // Decrement the counter
-            if (entityInsideCount <= 0)
-            {
-                enter = false;
-                isPlayer = false;
-                entityInsideCount = 0; // Reset the counter
-                CloseDoor();
-            }
-        }
-
-        
-    }
 
     void CloseDoor()
     {
