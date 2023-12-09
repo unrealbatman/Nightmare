@@ -17,6 +17,9 @@ public class Level1Manager : MonoBehaviour
         {
             Debug.LogError("CheckTriggerDoor component not found on exitDoor.");
         }
+
+        // Subscribe to the event from KeyPickUp script
+        KeyPickUp.OnKeyPickedUp += HandleKeyPickedUp;
     }
 
     private void OnDestroy()
@@ -25,27 +28,32 @@ public class Level1Manager : MonoBehaviour
         {
             triggerDoor.OnDoorStateChanged -= HandleDoorStateChanged;
         }
+
+        // Unsubscribe from the KeyPickUp event
+        KeyPickUp.OnKeyPickedUp -= HandleKeyPickedUp;
     }
 
     private void Update()
     {
-        // Check if the door is open and 'E' key is pressed
-        if (PlayerPrefs.GetInt("Level1key") == 1)
-        {
-            triggerDoor.open = true;
-        }
-            
-            if( canDoorOpen && Input.GetKeyDown(KeyCode.E))
+        if (canDoorOpen && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Door is open. E key pressed.");
             GameManager.Instance.BackToMain();
         }
-      
     }
 
     private void HandleDoorStateChanged(bool isOpen)
     {
-        // Update the door state flag based on the event
         canDoorOpen = isOpen;
+    }
+
+    private void HandleKeyPickedUp()
+    {
+        // Set PlayerPrefs indicating the key is picked up for Level 1
+        PlayerPrefs.SetInt("Level1Key", 1);
+        PlayerPrefs.Save();
+
+        // Now handle logic related to the key being picked up
+        triggerDoor.open = true;
     }
 }

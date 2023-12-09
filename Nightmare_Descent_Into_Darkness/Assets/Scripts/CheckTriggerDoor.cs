@@ -14,6 +14,7 @@ public class CheckTriggerDoor : MonoBehaviour
         {
             if(open)
             {
+                Debug.Log("HEEe");
                 doorInteractText.SetActive(true);
 
             }
