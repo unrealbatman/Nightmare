@@ -31,6 +31,7 @@ public class KeyPickUp : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            
             keyText.enabled = true;
             isInRange = true;
         }

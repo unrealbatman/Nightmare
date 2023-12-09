@@ -16,8 +16,10 @@ public class FieldOfView : MonoBehaviour {
 	public float meshResolution;
 	public int edgeResolveIterations;
 	public float edgeDstThreshold;
-
-	public MeshFilter viewMeshFilter;
+	public float targetVisibleDelay = 0.2f;
+    public float maxDetectionDelay = 2f; // Maximum delay for detection
+    public float maxDetectionDistance = 10f; // Maximum distance for delay effect
+    public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
 
 	void Start() {
@@ -27,7 +29,7 @@ public class FieldOfView : MonoBehaviour {
         };
         viewMeshFilter.mesh = viewMesh;
 
-        StartCoroutine("FindTargetsWithDelay", .2f);
+        StartCoroutine("FindTargetsWithDelay", targetVisibleDelay);
 	}
 
 
@@ -42,7 +44,7 @@ public class FieldOfView : MonoBehaviour {
         DrawFieldOfView();
 	}
 
-	void FindVisibleTargets() {
+    /*void FindVisibleTargets() {
 		visibleTargets.Clear ();
 		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
 
@@ -58,9 +60,38 @@ public class FieldOfView : MonoBehaviour {
 				}
 			}
 		}
-	}
+	}*/
 
-	void DrawFieldOfView() {
+    void FindVisibleTargets()
+    {
+        visibleTargets.Clear();
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        {
+            Transform target = targetsInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+            {
+                float dstToTarget = Vector3.Distance(transform.position, target.position);
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                {
+                    float detectionDelay = Mathf.Clamp(dstToTarget / maxDetectionDistance, 0f, maxDetectionDelay);
+                    StartCoroutine(DelayedDetection(target, detectionDelay));
+                }
+            }
+        }
+    }
+    IEnumerator DelayedDetection(Transform target, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (target != null && !visibleTargets.Contains(target))
+        {
+            visibleTargets.Add(target);
+            GameManager.Instance.BackToMain();
+        }
+    }
+    void DrawFieldOfView() {
 		int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
 		float stepAngleSize = viewAngle / stepCount;
 		List<Vector3> viewPoints = new List<Vector3> ();
