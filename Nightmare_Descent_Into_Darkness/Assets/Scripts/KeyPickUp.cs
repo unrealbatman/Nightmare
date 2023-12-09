@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class KeyPickUp : MonoBehaviour
 {
@@ -9,16 +10,14 @@ public class KeyPickUp : MonoBehaviour
     public delegate void KeyPickedUp();
     public static event KeyPickedUp OnKeyPickedUp;
 
-    void Start()
-    {
-        PlayerPrefs.SetInt("Level1key", 0);
-    }
+    bool isInRange = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             keyText.enabled = true;
+            isInRange = true;
         }
     }
 
@@ -27,19 +26,26 @@ public class KeyPickUp : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             keyText.enabled = false;
+            isInRange = false;
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && keyText.enabled == true)
+        if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
-            keyText.enabled = false;
-            key.enabled = false;
-            PlayerPrefs.SetInt("Level1key", 1);
-            PlayerPrefs.Save();
-            Debug.Log("Key picked up! PlayerPrefs set to 1.");
-            OnKeyPickedUp?.Invoke();
+            CollectKey();
         }
+        key.transform.Rotate(Vector3.up, 5.0f * Time.deltaTime);
+
+    }
+
+    public void CollectKey()
+    {
+        Debug.Log("here");
+        keyText.enabled = false;
+        key.enabled = false;
+        OnKeyPickedUp?.Invoke();
+        key.gameObject.SetActive(false);
     }
 }

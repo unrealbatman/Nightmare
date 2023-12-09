@@ -1,13 +1,15 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ObjectVibration : MonoBehaviour
 {
     [SerializeField]
     public float intensity = 0.1f; // The intensity of the vibration
-    public float frequency = 10f; // The frequency of the vibration
 
     private Rigidbody rb;
-
+    public GameObject player;
+    public float detectionRange;
+    public GameObject Key;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,4 +28,19 @@ public class ObjectVibration : MonoBehaviour
         // Apply the forces to the object
         rb.AddForce(new Vector3(forceX, forceY, forceZ), ForceMode.Impulse);
     }
+
+    private void Update()
+    {
+        DetectPlayer();
+    }
+    void DetectPlayer()
+    {
+        float distance = Vector3.Distance(player.transform.position, this.transform.position);
+        if (distance <= detectionRange)
+        {
+            
+            Key.SetActive(true);
+        }
+    }
+    
 }
