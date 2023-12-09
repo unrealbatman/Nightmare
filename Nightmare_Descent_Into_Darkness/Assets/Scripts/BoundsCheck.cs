@@ -8,6 +8,7 @@ public class BoundsCheck : MonoBehaviour
  
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.CompareTag("Player"))
         {
             outOfBoundsText.gameObject.SetActive(true);
