@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class KeyPickUp : MonoBehaviour
 {
@@ -45,5 +46,6 @@ public class KeyPickUp : MonoBehaviour
         keyText.enabled = false;
         key.enabled = false;
         OnKeyPickedUp?.Invoke();
+        key.gameObject.SetActive(false);
     }
 }
