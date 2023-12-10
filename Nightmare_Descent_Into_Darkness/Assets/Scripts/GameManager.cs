@@ -63,6 +63,11 @@ public class GameManager : MonoBehaviour{
 
     public void LoadLevel(GameObject door)
     {
+        if(!LevelMatch.ContainsKey(door))
+        {
+            Debug.LogError("Door not found in LevelMatch");
+            return;
+        } 
         savePoint.position = firstPersonController.transform.position;
         SceneManager.LoadScene(LevelMatch[door]);
         currentLevel = LevelMatch[door];

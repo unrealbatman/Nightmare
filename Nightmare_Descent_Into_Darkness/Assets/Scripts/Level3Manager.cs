@@ -27,6 +27,7 @@ public class Level3Manager : MonoBehaviour
     private bool canDoorOpen = false; // Flag indicating the door state
     public int numKeysCollected = 0;
     public TextMeshProUGUI exitMansionText;
+    public GameObject notePanel;
 
     void Start()
     {
@@ -82,12 +83,27 @@ public class Level3Manager : MonoBehaviour
             PlayerPrefs.Save();
             triggerDoor.open = true;
             Debug.Log("All keys collected for Level3! PlayerPrefs set for " + SceneManager.GetActiveScene().name + "Key to 1.");
-            exitMansionText.enabled = true;
-            StartCoroutine(DisableText());
+            DisplayNote();
 //            OnKeyPickedUp?.Invoke();
             // You might want to disable further key collection logic here or trigger an event for Level3 completion
             
         }
+    }
+
+    public void DisplayNote()
+    {
+        notePanel.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void CloseNote()
+    {
+        notePanel.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        exitMansionText.enabled = true;
+        StartCoroutine(DisableText());
     }
 
     IEnumerator DisableText()
