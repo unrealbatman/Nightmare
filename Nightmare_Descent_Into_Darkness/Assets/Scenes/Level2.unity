@@ -5407,12 +5407,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-    Deep within the forsaken asylum, a room harbors a sinister tale.
-    Dr. Victor Thornwood, a once-respected psychiatrist turned mad scientist, designed
-    a nightmarish chamber with walls of spikes. Thornwood believed that once the
-    spikes were in motion, they would slowly closing in and revealing an escape door.
+  m_text: 'Deep within the forsaken asylum, a room harbors a sinister tale. Dr. Victor
+    Thornwood, a once-respected psychiatrist turned mad scientist, designed a nightmarish
+    chamber with walls of spikes. Thornwood believed that once the spikes were in
+    motion, they would slowly closing in and revealing an escape door.
 
 
     Before
