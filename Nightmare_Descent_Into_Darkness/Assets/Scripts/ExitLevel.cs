@@ -4,10 +4,27 @@ using UnityEngine;
 
 public class ExitLevel : MonoBehaviour
 {
+    public GameObject notePanel;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")){
-            GameManager.Instance.BackToMain();
+            ExitLevelCoroutine();
         }
+    }
+
+    public void ExitLevelCoroutine()
+    {
+        notePanel.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void CloseNote()
+    {
+        Time.timeScale = 1f;
+        GameManager.Instance.BackToMain();
+        Cursor.lockState = CursorLockMode.Locked;
+        notePanel.SetActive(false);
     }
 }
