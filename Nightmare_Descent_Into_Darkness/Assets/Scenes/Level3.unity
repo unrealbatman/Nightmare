@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 639618092}
-  m_IndirectSpecularColor: {r: 0.0040923613, g: 0.00022393918, b: 0.00000005724309, a: 1}
+  m_IndirectSpecularColor: {r: 0.004092359, g: 0.00022393926, b: 0.00000005724309, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -557,10 +557,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyText: {fileID: 220735176}
-  whereIsKeyText: {fileID: 0}
-  exitDoorText: {fileID: 0}
+  whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
+  exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 72279678}
-  notePanel: {fileID: 0}
+  notePanel: {fileID: 1240659742}
 --- !u!23 &72279678 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 900536273927168837, guid: 0d20e1d66b73cd747922d8c2aa19b159, type: 3}
@@ -1044,10 +1044,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyText: {fileID: 220735176}
-  whereIsKeyText: {fileID: 0}
-  exitDoorText: {fileID: 0}
+  whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
+  exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 98938513}
-  notePanel: {fileID: 0}
+  notePanel: {fileID: 1240659742}
 --- !u!135 &98938516
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3166,10 +3166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyText: {fileID: 220735176}
-  whereIsKeyText: {fileID: 0}
-  exitDoorText: {fileID: 0}
+  whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
+  exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 369812238}
-  notePanel: {fileID: 0}
+  notePanel: {fileID: 1240659742}
 --- !u!135 &369812241
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5161,7 +5161,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633278213}
-  - component: {fileID: 633278214}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -5186,19 +5185,6 @@ Transform:
   - {fileID: 1653006604}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &633278214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633278212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d20f437a989e4d9b8f49f12a6ef917d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  findKeysText: {fileID: 2146764559}
 --- !u!1 &635678230
 GameObject:
   m_ObjectHideFlags: 0
@@ -13280,10 +13266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyText: {fileID: 220735176}
-  whereIsKeyText: {fileID: 0}
-  exitDoorText: {fileID: 0}
+  whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
+  exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 1055430114}
-  notePanel: {fileID: 0}
+  notePanel: {fileID: 1240659742}
 --- !u!135 &1055430117
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13978,7 +13964,7 @@ MonoBehaviour:
   edgeDstThreshold: 0.5
   targetVisibleDelay: 10
   maxDetectionDelay: 2
-  maxDetectionDistance: 10
+  maxDetectionDistance: 29.6
   viewMeshFilter: {fileID: 1009005646}
 --- !u!82 &1094440951
 AudioSource:
@@ -19167,10 +19153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyText: {fileID: 220735176}
-  whereIsKeyText: {fileID: 0}
-  exitDoorText: {fileID: 0}
+  whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
+  exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 1835909006}
-  notePanel: {fileID: 0}
+  notePanel: {fileID: 1240659742}
 --- !u!135 &1835909009
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25994,7 +25980,7 @@ Transform:
   m_GameObject: {fileID: 1549835298500695818}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000015484416, y: -0.7057261, z: 0.000000015424158, w: -0.70848477}
-  m_LocalPosition: {x: -13.847137, y: -65.518005, z: 15.502502}
+  m_LocalPosition: {x: -13.847137, y: -65.66, z: 15.502502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53597,7 +53583,7 @@ Transform:
   m_GameObject: {fileID: 8018273526118940608}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000015484416, y: -0.7057261, z: 0.000000015424158, w: -0.70848477}
-  m_LocalPosition: {x: -17.847443, y: -65.518005, z: 15.487549}
+  m_LocalPosition: {x: -17.847443, y: -65.673, z: 15.487549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

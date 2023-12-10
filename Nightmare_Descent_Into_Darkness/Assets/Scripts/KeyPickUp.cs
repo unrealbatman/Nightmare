@@ -15,7 +15,7 @@ public class KeyPickUp : MonoBehaviour
     public static event KeyPickedUp OnKeyPickedUp;
 
     bool isInRange = false;
-
+    bool isDone = false;
     void Start()
     {
         whereIsKeyText.enabled = true;
@@ -30,10 +30,12 @@ public class KeyPickUp : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") )
         {
-            
-            keyText.enabled = true;
+           if(isDone == false)
+            {
+                keyText.enabled = true;
+            }
             isInRange = true;
         }
     }
@@ -49,12 +51,15 @@ public class KeyPickUp : MonoBehaviour
 
     void Update()
     {
-        if (isInRange && Input.GetKeyDown(KeyCode.E))
+        if (isInRange && Input.GetKeyDown(KeyCode.E) )
         {
             StartCoroutine(ShowNote());
-            CollectKey();
+            if(isDone==false)
+            {
+                CollectKey();
+            }
         }
-        key.transform.Rotate(Vector3.up, 5.0f * Time.deltaTime);
+        key.transform.Rotate(Vector3.forward, 100.0f * Time.deltaTime);
 
     }
 
@@ -75,7 +80,7 @@ public class KeyPickUp : MonoBehaviour
 
     public void CollectKey()
     {
-        Debug.Log("here");
+        isDone = true;
         keyText.enabled = false;
         key.enabled = false;
         OnKeyPickedUp?.Invoke();
@@ -86,7 +91,7 @@ public class KeyPickUp : MonoBehaviour
 
     IEnumerator DisableExitDoorText()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(7f);
         exitDoorText.enabled = false;
     }
 }
