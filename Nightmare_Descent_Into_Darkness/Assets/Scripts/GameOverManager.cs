@@ -5,9 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
+    public GameObject gameOverPanel;
+    public GameManager gameManager;
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void RestartGame()
     {
-        SceneManager.LoadScene("Main");
+        gameManager.BackToMain();
     }
 
     public void QuitGame()

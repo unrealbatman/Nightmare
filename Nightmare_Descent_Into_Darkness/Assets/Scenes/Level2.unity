@@ -6860,6 +6860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notePanel: {fileID: 1094155316}
+  player: {fileID: 267608201}
 --- !u!65 &546467998
 BoxCollider:
   m_ObjectHideFlags: 0

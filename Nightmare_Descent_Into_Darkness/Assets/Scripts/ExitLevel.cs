@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExitLevel : MonoBehaviour
 {
     public GameObject notePanel;
+    public GameObject player;
+
+    void Update()
+    {
+        if(player.transform.position.y < -20)
+        {
+            SceneManager.LoadScene("GameOverMenu");
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
