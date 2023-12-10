@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 using static KeyPickUp;
 
 public enum ColorInterpolationType
@@ -24,6 +26,7 @@ public class Level3Manager : MonoBehaviour
     private CheckTriggerDoor triggerDoor;
     private bool canDoorOpen = false; // Flag indicating the door state
     public int numKeysCollected = 0;
+    public TextMeshProUGUI exitMansionText;
 
     void Start()
     {
@@ -79,10 +82,18 @@ public class Level3Manager : MonoBehaviour
             PlayerPrefs.Save();
             triggerDoor.open = true;
             Debug.Log("All keys collected for Level3! PlayerPrefs set for " + SceneManager.GetActiveScene().name + "Key to 1.");
+            exitMansionText.enabled = true;
+            StartCoroutine(DisableText());
 //            OnKeyPickedUp?.Invoke();
             // You might want to disable further key collection logic here or trigger an event for Level3 completion
             
         }
+    }
+
+    IEnumerator DisableText()
+    {
+        yield return new WaitForSeconds(5f);
+        exitMansionText.enabled = false;
     }
 
    
