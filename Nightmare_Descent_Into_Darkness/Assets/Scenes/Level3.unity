@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 639618092}
-  m_IndirectSpecularColor: {r: 0.0040923613, g: 0.00022393918, b: 0.00000005724309, a: 1}
+  m_IndirectSpecularColor: {r: 0.004092359, g: 0.00022393926, b: 0.00000005724309, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1449,7 +1449,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 80
+  field of view: 50.9
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -1475,8 +1475,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105603664}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.6919983, z: 0, w: 0.7218991}
-  m_LocalPosition: {x: 462.22, y: 21.581806, z: 451.1}
+  m_LocalRotation: {x: -0.01708455, y: 0.72336984, z: -0.051532082, w: -0.6883231}
+  m_LocalPosition: {x: 414.17, y: 23.92, z: 437.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8365,7 +8365,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633278213}
-  - component: {fileID: 633278214}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -8390,19 +8389,6 @@ Transform:
   - {fileID: 1653006604}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &633278214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633278212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d20f437a989e4d9b8f49f12a6ef917d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  findKeysText: {fileID: 2146764559}
 --- !u!1 &635678230
 GameObject:
   m_ObjectHideFlags: 0

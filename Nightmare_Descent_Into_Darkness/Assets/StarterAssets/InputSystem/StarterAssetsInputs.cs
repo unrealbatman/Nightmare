@@ -113,7 +113,7 @@ namespace StarterAssets
             var ray = new Ray(CinemachineCameraTarget.transform.position, CinemachineCameraTarget.transform.forward);
             // ray-cast for interables
             int hits = Physics.RaycastNonAlloc(ray, hit, interactRadius, LayerMask.GetMask("LevelEntry"));
-			Debug.Log("hits: " + hits);
+			//Debug.Log("hits: " + hits);
             if (hits > 0)
             {
 				Debug.Log(hit[0].collider.gameObject);
