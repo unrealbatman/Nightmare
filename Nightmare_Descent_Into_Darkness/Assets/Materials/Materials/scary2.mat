@@ -169,7 +169,7 @@ Material:
     m_Colors:
     - _Base_Color: {r: 0.03551549, g: 0.01966893, b: 0.3207548, a: 1}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 0.09548348, g: 1, b: 0.043137252, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CubemapColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Fill_Color: {r: 27.24957, g: 156.1524, b: 444.3774, a: 1}
