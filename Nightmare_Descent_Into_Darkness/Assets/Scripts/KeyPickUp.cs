@@ -53,11 +53,6 @@ public class KeyPickUp : MonoBehaviour
     {
         if (isInRange && Input.GetKeyDown(KeyCode.E) )
         {
-            if (SceneManager.GetActiveScene().name != "Level3")
-            {
-                StartCoroutine(ShowNote());
-
-            }
             if (isDone==false)
             {
                 CollectKey();
