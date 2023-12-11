@@ -27,20 +27,18 @@ public class CutsceneController : MonoBehaviour
 
   
 
-   public void StartCutscene(Vector3 playerPosition)
+   public void StartCutscene()
     {
         
 
         PlayableDirector timeline = GetComponent<PlayableDirector>();
-            if (timeline != null)
+        CinemachineCam.SetActive(true);
+        MainCamera.SetActive(false);
+        if (timeline != null)
             {
-            CinemachineCam.SetActive(true);
-           // CinemachineCam.transform.position = MainCamera.transform.position;
-            MainCamera.SetActive(false);
+            
             timeline.Play(); // Start playing the timeline
-                                 // Move the enemy towards the detected player position
 
-            //GameManager.Instance.BackToMain();
            
         }
             else

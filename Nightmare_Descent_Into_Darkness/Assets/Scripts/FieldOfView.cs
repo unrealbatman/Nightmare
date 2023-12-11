@@ -23,6 +23,7 @@ public class FieldOfView : MonoBehaviour {
     public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
 	public CutsceneController controller;
+	public AudioSource audioSource;
 	void Start() {
         viewMesh = new Mesh
         {
@@ -45,7 +46,7 @@ public class FieldOfView : MonoBehaviour {
         DrawFieldOfView();
 	}
 
-    /*void FindVisibleTargets() {
+    void FindVisibleTargets() {
 		visibleTargets.Clear ();
 		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
 
@@ -55,15 +56,16 @@ public class FieldOfView : MonoBehaviour {
 			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
 				float dstToTarget = Vector3.Distance (transform.position, target.position);
 				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
+					
 					visibleTargets.Add (target);
-
-					GameManager.Instance.BackToMain();
-				}
+                    controller.gameObject.SetActive(true);
+                    controller.GetComponent<CutsceneController>().StartCutscene();
+                }
 			}
 		}
-	}*/
+	}
 
-    void FindVisibleTargets()
+    /*void FindVisibleTargets()
     {
         visibleTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
@@ -74,23 +76,34 @@ public class FieldOfView : MonoBehaviour {
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
+                audioSource.Play();
+
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
-                    float detectionDelay = Mathf.Clamp(dstToTarget / maxDetectionDistance, 0f, maxDetectionDelay);
-                    StartCoroutine(DelayedDetection(target, detectionDelay));
+					
+
+                    visibleTargets.Add(target);
+                    controller.gameObject.SetActive(true);
+                    controller.GetComponent<CutsceneController>().StartCutscene();
+
+
+                    //float detectionDelay = Mathf.Clamp(dstToTarget / maxDetectionDistance, 0f, maxDetectionDelay);
+                    //StartCoroutine(DelayedDetection(target, maxDetectionDelay));
                 }
             }
         }
-    }
+    }*/
     IEnumerator DelayedDetection(Transform target, float delay)
     {
         yield return new WaitForSeconds(delay);
         if (target != null && !visibleTargets.Contains(target))
         {
+            
+            
             visibleTargets.Add(target);
 			controller.gameObject.SetActive(true);
-			controller.GetComponent<CutsceneController>().StartCutscene(target.transform.position);
+			controller.GetComponent<CutsceneController>().StartCutscene();
 
 
             //GameManager.Instance.BackToMain();
