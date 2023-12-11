@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 639618092}
-  m_IndirectSpecularColor: {r: 0.004092359, g: 0.00022393926, b: 0.00000005724309, a: 1}
+  m_IndirectSpecularColor: {r: 0.0040923613, g: 0.00022393918, b: 0.00000005724309, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -560,7 +560,6 @@ MonoBehaviour:
   whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
   exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 72279678}
-  notePanel: {fileID: 1240659742}
 --- !u!23 &72279678 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 900536273927168837, guid: 0d20e1d66b73cd747922d8c2aa19b159, type: 3}
@@ -1047,7 +1046,6 @@ MonoBehaviour:
   whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
   exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 98938513}
-  notePanel: {fileID: 1240659742}
 --- !u!135 &98938516
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1350,10 +1348,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1412632670}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.37625003, y: 0.21811111}
-  m_AnchorMax: {x: 0.60312504, y: 0.3077778}
-  m_AnchoredPosition: {x: 28.8, y: 0}
-  m_SizeDelta: {x: -58.6616, y: -0.6257019}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -3.5, y: -42.68715}
+  m_SizeDelta: {x: -246.09096, y: -164.6257}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &118052941
 MonoBehaviour:
@@ -1402,12 +1400,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 10.55
   m_fontSizeBase: 7.01
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 7
+  m_fontSizeMax: 20
   m_fontStyle: 3
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
@@ -1438,7 +1436,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -56.503597, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.05654146, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1896,11 +1894,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700580447227347192, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 378.9292
+      value: 70.244
       objectReference: {fileID: 0}
     - target: {fileID: 3700580447227347192, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 34.3274
+      value: 15.514
       objectReference: {fileID: 0}
     - target: {fileID: 3700580447227347192, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1932,11 +1930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700580447227347192, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.000011444
       objectReference: {fileID: 0}
     - target: {fileID: 3700580447227347192, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -160
+      value: -42.67
       objectReference: {fileID: 0}
     - target: {fileID: 3700580447227347192, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1949,6 +1947,26 @@ PrefabInstance:
     - target: {fileID: 3700580447227347192, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061050429888749307, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061050429888749307, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
+      propertyPath: m_fontSize
+      value: 10.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061050429888749307, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061050429888749307, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061050429888749307, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6640408888836403441, guid: 4f1ccc304b8d3af47ae1f2872224f1e6, type: 3}
       propertyPath: m_Name
@@ -3169,7 +3187,6 @@ MonoBehaviour:
   whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
   exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 369812238}
-  notePanel: {fileID: 1240659742}
 --- !u!135 &369812241
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5161,6 +5178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 633278213}
+  - component: {fileID: 633278214}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -5185,6 +5203,19 @@ Transform:
   - {fileID: 1653006604}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &633278214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633278212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d20f437a989e4d9b8f49f12a6ef917d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  findKeysText: {fileID: 2146764559}
 --- !u!1 &635678230
 GameObject:
   m_ObjectHideFlags: 0
@@ -12547,8 +12578,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 282, y: -172.56}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 123.90385, y: -72.174065}
+  m_SizeDelta: {x: 53.47889, y: 21.05187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &926286549
 MonoBehaviour:
@@ -13269,7 +13300,6 @@ MonoBehaviour:
   whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
   exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 1055430114}
-  notePanel: {fileID: 1240659742}
 --- !u!135 &1055430117
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15313,7 +15343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1240659744
@@ -16239,8 +16269,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16321,10 +16351,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1240659743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000010312, y: 0}
-  m_SizeDelta: {x: 633.9597, y: 252.5881}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -60, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393487268
 MonoBehaviour:
@@ -16346,18 +16376,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In the shadowy corridors of a cursed mansion, an unholy presence looms.
-    Once the sanctuary of a devout priest named Father Matthias, the mansion fell
-    victim to an evil force that twisted him into a malevolent entity. Now, he roams
-    the halls, hunting down intruders in a relentless pursuit.
+  m_text: 'Decades ago, the mansion was a sanctuary, housing a dark history tied
+    to a sinister cult. Father Matthias, unaware of this legacy, arrived with a mission
+    to purify the mansion. Little did he know, an ancient evil lurked within, gradually
+    corrupting him into a relentless and unholy entity.
 
+    The vibrating and mysterious
+    objects scattered throughout the mansion were remnants of the cult''s rituals,
+    serving as keys to break the curse binding Father Matthias. The room filled with
+    spiders and nightmarish paintings echoed the cult''s sinister practices.
 
-    As the player,
-    your only chance of escape lies in collecting a series of vibrating and mysterious
-    objects scattered throughout the mansion. These objects hold the keys to your
-    salvation. However, lurking within the mansion''s labyrinthine layout is a room
-    teeming with venomous spiders, and the walls adorned with grotesque and nightmarish
-    paintings that seem to mirror the darkness within.'
+    Your
+    escape marked the end of Father Matthias'' reign of terror, but the mansion''s
+    dark secrets would continue to haunt those who survived, a grim reminder of the
+    horrors hidden within its walls.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50e1fdd64c6a54946b12d38e41a4d02b, type: 2}
   m_sharedMaterial: {fileID: -1041990557112993956, guid: 50e1fdd64c6a54946b12d38e41a4d02b, type: 2}
@@ -16384,12 +16416,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 8.9
+  m_fontSizeBase: 9
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 5
+  m_fontSizeMax: 10
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -16516,7 +16548,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 320, y: 240}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -17946,27 +17978,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.48875
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.513
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.4225
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.48388886
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -161
+      value: -176.56477
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -21
+      value: -157.72139
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17998,11 +18030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2.199997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.3999996
+      value: 6.4000015
       objectReference: {fileID: 0}
     - target: {fileID: 4467597077009951746, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -18025,12 +18057,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455198584025378572, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455198584025378572, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
+      propertyPath: m_margin.x
+      value: -0.94744116
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455198584025378572, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_margin.y
-      value: 7.5096893
+      value: 0.3216405
       objectReference: {fileID: 0}
     - target: {fileID: 7455198584025378572, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_margin.z
-      value: -136.39543
+      value: -0.34394062
       objectReference: {fileID: 0}
     - target: {fileID: 7455198584025378572, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_fontStyle
@@ -18039,6 +18079,10 @@ PrefabInstance:
     - target: {fileID: 7455198584025378572, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455198584025378572, guid: f07712cf26bfa60408fb22a0f063090c, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19156,7 +19200,6 @@ MonoBehaviour:
   whereIsKeyText: {fileID: 2486602562123601487, guid: 2bbeedbf71da51845ba43cc4beb73c43, type: 3}
   exitDoorText: {fileID: 6578421864531105157, guid: 43cd1b642e99b4044a9463e766d8e451, type: 3}
   key: {fileID: 1835909006}
-  notePanel: {fileID: 1240659742}
 --- !u!135 &1835909009
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19760,10 +19803,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1412632670}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.37625003, y: 0.21811111}
-  m_AnchorMax: {x: 0.60312504, y: 0.3077778}
-  m_AnchoredPosition: {x: 28.8, y: 0}
-  m_SizeDelta: {x: -58.6616, y: -0.6257019}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -42.542}
+  m_SizeDelta: {x: -237.92044, y: -164.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2003721445
 MonoBehaviour:
@@ -19812,12 +19855,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.45
+  m_fontSize: 8.9
   m_fontSizeBase: 7.01
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 7
+  m_fontSizeMax: 20
   m_fontStyle: 3
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
@@ -19848,7 +19891,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -56.503597, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.118148796, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -21341,10 +21384,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1412632670}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.37625003, y: 0.21811111}
-  m_AnchorMax: {x: 0.60312504, y: 0.3077778}
-  m_AnchoredPosition: {x: 8.25, y: -43.275}
-  m_SizeDelta: {x: 541.7391, y: 86.5494}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -56.30005}
+  m_SizeDelta: {x: -56.282013, y: -117.80997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2146764559
 MonoBehaviour:
@@ -21353,7 +21396,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146764557}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -21394,12 +21437,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.4
+  m_fontSize: 11
   m_fontSizeBase: 7.01
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 7
+  m_fontSizeMax: 20
   m_fontStyle: 3
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

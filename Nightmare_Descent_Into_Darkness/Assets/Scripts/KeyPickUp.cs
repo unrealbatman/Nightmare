@@ -9,7 +9,6 @@ public class KeyPickUp : MonoBehaviour
     public TextMeshProUGUI whereIsKeyText;
     public TextMeshProUGUI exitDoorText;
     public MeshRenderer key;
-    public GameObject notePanel;
 
     public delegate void KeyPickedUp();
     public static event KeyPickedUp OnKeyPickedUp;
@@ -53,7 +52,6 @@ public class KeyPickUp : MonoBehaviour
     {
         if (isInRange && Input.GetKeyDown(KeyCode.E) )
         {
-            StartCoroutine(ShowNote());
             if(isDone==false)
             {
                 CollectKey();
@@ -61,21 +59,6 @@ public class KeyPickUp : MonoBehaviour
         }
         key.transform.Rotate(Vector3.forward, 100.0f * Time.deltaTime);
 
-    }
-
-    IEnumerator ShowNote()
-    {
-        yield return new WaitForSeconds(5f);
-        notePanel.SetActive(true);
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void CloseNote()
-    {
-        notePanel.SetActive(false);
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void CollectKey()
