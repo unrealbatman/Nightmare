@@ -28,6 +28,10 @@ public class Level3Manager : MonoBehaviour
     public int numKeysCollected = 0;
     public TextMeshProUGUI exitMansionText;
     public GameObject notePanel;
+    public float moveSpeed = 3.0f;
+    private Transform player; // Reference to the player
+    [SerializeField]
+    private Transform enemy;
 
     void Start()
     {
@@ -55,8 +59,8 @@ public class Level3Manager : MonoBehaviour
             GameManager.Instance.BackToMain();
         }
 
-    }
 
+    }
 
     private void HandleDoorStateChanged(bool isOpen)
     {
@@ -85,8 +89,7 @@ public class Level3Manager : MonoBehaviour
             Debug.Log("All keys collected for Level3! PlayerPrefs set for " + SceneManager.GetActiveScene().name + "Key to 1.");
             DisplayNote();
 //            OnKeyPickedUp?.Invoke();
-            // You might want to disable further key collection logic here or trigger an event for Level3 completion
-            
+    
         }
     }
 
@@ -112,8 +115,9 @@ public class Level3Manager : MonoBehaviour
         exitMansionText.enabled = false;
     }
 
-   
 
+    
+   
 
     #region ColourChange
     void InitializeMaterialSettings()

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Playables;
 
 public class FieldOfView : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class FieldOfView : MonoBehaviour {
     public float maxDetectionDistance = 10f; // Maximum distance for delay effect
     public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
-
+	public CutsceneController controller;
 	void Start() {
         viewMesh = new Mesh
         {
@@ -88,9 +89,16 @@ public class FieldOfView : MonoBehaviour {
         if (target != null && !visibleTargets.Contains(target))
         {
             visibleTargets.Add(target);
-            GameManager.Instance.BackToMain();
+			controller.gameObject.SetActive(true);
+			controller.GetComponent<CutsceneController>().StartCutscene(target.transform.position);
+
+
+            //GameManager.Instance.BackToMain();
         }
     }
+
+
+
     void DrawFieldOfView() {
 		int stepCount = Mathf.RoundToInt(viewAngle * meshResolution);
 		float stepAngleSize = viewAngle / stepCount;

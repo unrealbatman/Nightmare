@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class KeyPickUp : MonoBehaviour
 {
@@ -53,8 +54,12 @@ public class KeyPickUp : MonoBehaviour
     {
         if (isInRange && Input.GetKeyDown(KeyCode.E) )
         {
-            StartCoroutine(ShowNote());
-            if(isDone==false)
+            if (SceneManager.GetActiveScene().name != "Level3")
+            {
+                StartCoroutine(ShowNote());
+
+            }
+            if (isDone==false)
             {
                 CollectKey();
             }
