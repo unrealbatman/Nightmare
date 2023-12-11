@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 639618092}
-  m_IndirectSpecularColor: {r: 0.004092359, g: 0.00022393926, b: 0.00000005724309, a: 1}
+  m_IndirectSpecularColor: {r: 0.0040923613, g: 0.00022393918, b: 0.00000005724309, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -484,6 +484,7 @@ MonoBehaviour:
   numKeysCollected: 0
   exitMansionText: {fileID: 118052941}
   findKeyText: {fileID: 2146764559}
+  notePanel: {fileID: 1240659742}
 --- !u!1 &54679027
 GameObject:
   m_ObjectHideFlags: 0
@@ -19222,8 +19223,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1443865363}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 48084894}
+        m_TargetAssemblyTypeName: Level3Manager, Assembly-CSharp
         m_MethodName: CloseNote
         m_Mode: 1
         m_Arguments:
@@ -26066,7 +26067,6 @@ MonoBehaviour:
   Levels: []
   PassedLevels: []
   currentLevel: Level3
-  notePanel: {fileID: 1240659742}
 --- !u!4 &1443865364
 Transform:
   m_ObjectHideFlags: 0
