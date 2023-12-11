@@ -5,6 +5,7 @@ public class Level1Manager : MonoBehaviour
     public GameObject exitDoor;
     private CheckTriggerDoor triggerDoor;
     private bool canDoorOpen = false; // Flag indicating the door state
+    public GameObject notePanel;
 
     private void Start()
     {
@@ -20,6 +21,9 @@ public class Level1Manager : MonoBehaviour
 
         // Subscribe to the event from KeyPickUp script
         KeyPickUp.OnKeyPickedUp += HandleKeyPickedUp;
+        notePanel.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void OnDestroy()
@@ -55,5 +59,12 @@ public class Level1Manager : MonoBehaviour
 
         // Now handle logic related to the key being picked up
         triggerDoor.open = true;
+    }
+
+    public void CloseNote()
+    {
+        notePanel.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
