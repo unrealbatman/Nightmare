@@ -27,6 +27,8 @@ public class Level3Manager : MonoBehaviour
     private bool canDoorOpen = false; // Flag indicating the door state
     public int numKeysCollected = 0;
     public TextMeshProUGUI exitMansionText;
+    public TextMeshProUGUI findKeyText;
+
 
     void Start()
     {
@@ -41,11 +43,17 @@ public class Level3Manager : MonoBehaviour
             Debug.LogError("CheckTriggerDoor component not found on exitDoor.");
         }
 
+        StartCoroutine(DisplayInstruction());
         // Subscribe to the event from KeyPickUp script
         KeyPickUp.OnKeyPickedUp += KeyCollected;
     }
 
-
+    IEnumerator DisplayInstruction()
+    {
+        findKeyText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(7f);
+        findKeyText.gameObject.SetActive(false);
+    }
     private void Update()
     {
         if (canDoorOpen && Input.GetKeyDown(KeyCode.E))
