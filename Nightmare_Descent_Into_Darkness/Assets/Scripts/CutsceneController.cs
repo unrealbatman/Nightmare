@@ -11,10 +11,14 @@ public class CutsceneController : MonoBehaviour
     public GameObject CinemachineCam;
     public GameObject MainCamera;
 
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
+    public AudioSource audioSource3;
+    public AudioSource audioSource4;
 
     private void Start()
     {
-        CinemachineCam.gameObject.SetActive(false);
+       // CinemachineCam.SetActive(false);
     }
 
     void Update()
@@ -33,7 +37,12 @@ public class CutsceneController : MonoBehaviour
 
         PlayableDirector timeline = GetComponent<PlayableDirector>();
         CinemachineCam.SetActive(true);
+
         MainCamera.SetActive(false);
+        audioSource1.Stop();
+        audioSource2.Stop();
+        audioSource3.Stop();    
+        audioSource4.Stop();
         if (timeline != null)
             {
             

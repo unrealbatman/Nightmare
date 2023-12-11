@@ -1408,7 +1408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &105603665
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1450,7 +1450,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 50.9
+  field of view: 80
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -1476,8 +1476,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105603664}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.01708455, y: 0.72336984, z: -0.051532082, w: -0.6883231}
-  m_LocalPosition: {x: 414.17, y: 23.92, z: 437.91}
+  m_LocalRotation: {x: 0, y: 0.6919983, z: 0, w: 0.7218991}
+  m_LocalPosition: {x: 462.22, y: 21.581806, z: 451.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1566,7 +1566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &117505834
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,6 +1630,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CinemachineCam: {fileID: 105603664}
   MainCamera: {fileID: 101112939}
+  audioSource1: {fileID: 950605748}
+  audioSource2: {fileID: 308677829}
+  audioSource3: {fileID: 1094440951}
+  audioSource4: {fileID: 1094440951}
 --- !u!95 &117505837
 Animator:
   serializedVersion: 5
@@ -18117,7 +18121,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -18439,31 +18443,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 414.17
+      value: 462.22
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.92
+      value: 21.581806
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 437.91
+      value: 451.1
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.6883231
+      value: 0.7218991
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.01708455
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.72336984
+      value: 0.6919983
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.051532082
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -18479,7 +18483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: field of view
-      value: 50.9
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430821, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: far clip plane
@@ -20816,9 +20820,7 @@ MonoBehaviour:
   meshResolution: 1
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
-  targetVisibleDelay: 10
-  maxDetectionDelay: 0.5
-  maxDetectionDistance: 74.38
+  targetVisibleDelay: 7
   viewMeshFilter: {fileID: 1009005646}
   controller: {fileID: 117505836}
   audioSource: {fileID: 1094440956}
@@ -25345,7 +25347,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -28384,7 +28386,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

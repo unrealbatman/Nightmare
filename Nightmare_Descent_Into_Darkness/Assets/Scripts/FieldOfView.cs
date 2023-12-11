@@ -18,8 +18,8 @@ public class FieldOfView : MonoBehaviour {
 	public int edgeResolveIterations;
 	public float edgeDstThreshold;
 	public float targetVisibleDelay = 0.2f;
-    public float maxDetectionDelay = 2f; // Maximum delay for detection
-    public float maxDetectionDistance = 10f; // Maximum distance for delay effect
+//    public float maxDetectionDelay = 2f; // Maximum delay for detection
+  //  public float maxDetectionDistance = 10f; // Maximum distance for delay effect
     public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
 	public CutsceneController controller;
