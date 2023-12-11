@@ -20820,10 +20820,11 @@ MonoBehaviour:
   meshResolution: 1
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
-  targetVisibleDelay: 7
+  targetVisibleDelay: 5
   viewMeshFilter: {fileID: 1009005646}
   controller: {fileID: 117505836}
   audioSource: {fileID: 1094440956}
+  clip: {fileID: 8300000, guid: 205a3e9e43b08b149bdad2bb82d652ed, type: 3}
 --- !u!82 &1094440951
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21034,9 +21035,9 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 91
+  Priority: 0
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.4
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -26066,7 +26067,6 @@ MonoBehaviour:
   Levels: []
   PassedLevels: []
   currentLevel: Level3
-  notePanel: {fileID: 1240659742}
 --- !u!4 &1443865364
 Transform:
   m_ObjectHideFlags: 0

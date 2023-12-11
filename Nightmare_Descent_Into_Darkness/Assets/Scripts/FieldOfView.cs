@@ -24,6 +24,7 @@ public class FieldOfView : MonoBehaviour {
 	Mesh viewMesh;
 	public CutsceneController controller;
 	public AudioSource audioSource;
+	public AudioClip clip;	
 	void Start() {
         viewMesh = new Mesh
         {
@@ -56,7 +57,12 @@ public class FieldOfView : MonoBehaviour {
 			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
 				float dstToTarget = Vector3.Distance (transform.position, target.position);
 				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-					
+					if(!audioSource.isPlaying)
+					{
+						Debug.Log("EHJEe");
+						audioSource.Play ();
+					}
+				//udioSource.PlayOneShot(clip);
 					visibleTargets.Add (target);
                     controller.gameObject.SetActive(true);
                     controller.GetComponent<CutsceneController>().StartCutscene();
