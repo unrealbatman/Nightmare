@@ -30,8 +30,6 @@ public class GameManager : MonoBehaviour{
     //record the currentLevel
     public string currentLevel = MainScene;
 
-    public GameObject notePanel;
-
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -46,32 +44,6 @@ public class GameManager : MonoBehaviour{
         DontDestroyOnLoad(gameObject);
 
             
-    }
-
-    public void Start()
-    {
-        if(PassedLevels.Count < 1)
-        {
-            return;
-        }
-        else if(PassedLevels[0] == "Level3" || PassedLevels[1] == "Level3" || PassedLevels[2] == "Level3")
-        {
-            DisplayNote();
-        }
-    }
-
-    public void DisplayNote()
-    {
-        notePanel.SetActive(true);
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void CloseNote()
-    {
-        notePanel.SetActive(false);
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
@@ -91,12 +63,12 @@ public class GameManager : MonoBehaviour{
 
     public void LoadLevel(GameObject door)
     {
-        if(!LevelMatch.ContainsKey(door))
+        //TODO: if door not in dictionary, directly return
+        if (!LevelMatch.ContainsKey(door))
         {
-            Debug.LogError("Door not found in LevelMatch");
-
+            Debug.Log("Door not found");
             return;
-        } 
+        }
         savePoint.position = firstPersonController.transform.position;
         SceneManager.LoadScene(LevelMatch[door]);
         currentLevel = LevelMatch[door];

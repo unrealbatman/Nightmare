@@ -20,6 +20,10 @@ public class RegisterLevelEntry : MonoBehaviour
 
     private void onSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene != SceneManager.GetSceneByName(GameManager.MainScene))
+        {
+            return;
+        }
         string levelName = GameManager.Instance.Levels[levelIndex];
         if (GameManager.Instance.PassedLevels.Contains(levelName))
         {
@@ -29,6 +33,7 @@ public class RegisterLevelEntry : MonoBehaviour
         else
         {
             GameManager.Instance.LevelMatch.Add(gameObject, levelName);
+            Debug.Log(levelName + "registered");
         }
         
        
