@@ -64,6 +64,9 @@ namespace StarterAssets
 		[Tooltip("Indicating whether player can move")]
 		public bool CanMove = true;
 
+        [Tooltip("Indicating whether player can rotation view")]
+        public bool CanRotate = true;
+
 
         // cinemachine
         private float _cinemachineTargetPitch;
@@ -144,7 +147,11 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+            if (CanRotate)
+            {
+                CameraRotation();
+            }
+
 		}
 
 		private void GroundedCheck()
@@ -170,6 +177,7 @@ namespace StarterAssets
 
 				// Update Cinemachine camera target pitch
 				CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
+
 
 				// rotate the player left and right
 				transform.Rotate(Vector3.up * _rotationVelocity);

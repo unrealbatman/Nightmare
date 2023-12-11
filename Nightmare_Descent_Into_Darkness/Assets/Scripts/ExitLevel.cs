@@ -28,6 +28,7 @@ public class ExitLevel : MonoBehaviour
         notePanel.SetActive(true);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
+        SpikeLevelManager.Instance.LockView();
        
     }
 
@@ -36,6 +37,7 @@ public class ExitLevel : MonoBehaviour
         Time.timeScale = 1f;
         GameManager.Instance.BackToMain();
         Cursor.lockState = CursorLockMode.Locked;
+        SpikeLevelManager.Instance.ReleaseView();
         notePanel.SetActive(false);
         GameManager.Instance.LevelFinish("Level2");
     }
