@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class CutsceneController : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class CutsceneController : MonoBehaviour
         CinemachineCam.gameObject.SetActive(false);
     }
 
+    void Update()
+    {
+        if(transform.position.x == 408.0801f)
+        {
+            SceneManager.LoadScene("GameOverMenu");
+        }
+    }
 
   
 
