@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+//using TMPro;
 
 public class KeyPickUp : MonoBehaviour
 {
