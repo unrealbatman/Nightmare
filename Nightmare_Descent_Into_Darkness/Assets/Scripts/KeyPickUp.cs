@@ -3,6 +3,8 @@ using TMPro;
 using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class KeyPickUp : MonoBehaviour
 {

@@ -483,7 +483,6 @@ MonoBehaviour:
   exitDoor: {fileID: 203927836}
   numKeysCollected: 0
   exitMansionText: {fileID: 118052941}
-  notePanel: {fileID: 1240659742}
 --- !u!1 &54679027
 GameObject:
   m_ObjectHideFlags: 0
@@ -19218,8 +19217,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 48084894}
-        m_TargetAssemblyTypeName: Level3Manager, Assembly-CSharp
+      - m_Target: {fileID: 1443865363}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: CloseNote
         m_Mode: 1
         m_Arguments:
@@ -25970,6 +25969,7 @@ MonoBehaviour:
   Levels: []
   PassedLevels: []
   currentLevel: Level3
+  notePanel: {fileID: 1240659742}
 --- !u!4 &1443865364
 Transform:
   m_ObjectHideFlags: 0

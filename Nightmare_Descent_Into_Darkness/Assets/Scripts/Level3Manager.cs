@@ -27,8 +27,6 @@ public class Level3Manager : MonoBehaviour
     private bool canDoorOpen = false; // Flag indicating the door state
     public int numKeysCollected = 0;
     public TextMeshProUGUI exitMansionText;
-    public GameObject notePanel;
-
 
     void Start()
     {
@@ -53,6 +51,7 @@ public class Level3Manager : MonoBehaviour
         if (canDoorOpen && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Door is open. E key pressed.");
+            GameManager.Instance.LevelFinish("Level3");
             GameManager.Instance.BackToMain();
         }
 
@@ -83,25 +82,15 @@ public class Level3Manager : MonoBehaviour
             PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "Key", 1);
             PlayerPrefs.Save();
             triggerDoor.open = true;
+            ShowExitMansionText();
             Debug.Log("All keys collected for Level3! PlayerPrefs set for " + SceneManager.GetActiveScene().name + "Key to 1.");
-            DisplayNote();
 //            OnKeyPickedUp?.Invoke();
     
         }
     }
 
-    public void DisplayNote()
+    public void ShowExitMansionText()
     {
-        notePanel.SetActive(true);
-        Time.timeScale = 0f;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void CloseNote()
-    {
-        notePanel.SetActive(false);
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
         exitMansionText.enabled = true;
         StartCoroutine(DisableText());
     }
