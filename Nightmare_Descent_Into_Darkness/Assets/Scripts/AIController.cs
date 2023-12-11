@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -188,12 +189,15 @@ public class AIController : MonoBehaviour
                 if (rayHit.collider.CompareTag("Player"))
                 {
                     agent.speed = 10;
-                    if (agent.remainingDistance<0.1)
+                    Debug.Log("Agfent Remainin distance: " + agent.remainingDistance);
+                    if (agent.remainingDistance<=1.5)
                     {
-                       /* agent.isStopped = true;
-                        // Trigger the attack animation here
-                        animator.SetTrigger("Attack");
-                        currentState = State.Attack;*/
+                        /* agent.isStopped = true;
+                         // Trigger the attack animation here
+                         animator.SetTrigger("Attack");
+                         currentState = State.Attack;*/
+                        SceneManager.LoadScene("GameOverMenu");
+
                     }
 
                     return;
