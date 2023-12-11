@@ -483,6 +483,7 @@ MonoBehaviour:
   exitDoor: {fileID: 203927836}
   numKeysCollected: 0
   exitMansionText: {fileID: 118052941}
+  findKeyText: {fileID: 2146764559}
 --- !u!1 &54679027
 GameObject:
   m_ObjectHideFlags: 0
@@ -20791,8 +20792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff07fbb2a9d7ae044b3719171b39b0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 36.1
-  viewAngle: 116
+  viewRadius: 22.79
+  viewAngle: 126
   targetMask:
     serializedVersion: 2
     m_Bits: 128
@@ -20804,8 +20805,8 @@ MonoBehaviour:
   edgeResolveIterations: 4
   edgeDstThreshold: 0.5
   targetVisibleDelay: 10
-  maxDetectionDelay: 2
-  maxDetectionDistance: 29.6
+  maxDetectionDelay: 3
+  maxDetectionDistance: 74.38
   viewMeshFilter: {fileID: 1009005646}
   controller: {fileID: 117505836}
 --- !u!82 &1094440951
