@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour{
         if(!LevelMatch.ContainsKey(door))
         {
             Debug.LogError("Door not found in LevelMatch");
+
             return;
         } 
         savePoint.position = firstPersonController.transform.position;

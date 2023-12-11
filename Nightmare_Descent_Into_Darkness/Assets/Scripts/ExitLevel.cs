@@ -28,6 +28,7 @@ public class ExitLevel : MonoBehaviour
         notePanel.SetActive(true);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
+       
     }
 
     public void CloseNote()
@@ -36,5 +37,6 @@ public class ExitLevel : MonoBehaviour
         GameManager.Instance.BackToMain();
         Cursor.lockState = CursorLockMode.Locked;
         notePanel.SetActive(false);
+        GameManager.Instance.LevelFinish("Level2");
     }
 }

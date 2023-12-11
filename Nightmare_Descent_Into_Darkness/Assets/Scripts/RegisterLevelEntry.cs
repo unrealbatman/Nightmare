@@ -23,6 +23,7 @@ public class RegisterLevelEntry : MonoBehaviour
         string levelName = GameManager.Instance.Levels[levelIndex];
         if (GameManager.Instance.PassedLevels.Contains(levelName))
         {
+            this.gameObject.layer = 0;
             return;
         }
         else
