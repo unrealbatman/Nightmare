@@ -28,10 +28,7 @@ public class Level3Manager : MonoBehaviour
     public int numKeysCollected = 0;
     public TextMeshProUGUI exitMansionText;
     public GameObject notePanel;
-    public float moveSpeed = 3.0f;
-    private Transform player; // Reference to the player
-    [SerializeField]
-    private Transform enemy;
+
 
     void Start()
     {
