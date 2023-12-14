@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +18,7 @@ public class CutsceneController : MonoBehaviour
 
     private void Start()
     {
-       // CinemachineCam.SetActive(false);
+       //CinemachineCam.SetActive(false);
     }
 
     void Update()
@@ -37,7 +37,6 @@ public class CutsceneController : MonoBehaviour
 
         PlayableDirector timeline = GetComponent<PlayableDirector>();
         CinemachineCam.SetActive(true);
-
         MainCamera.SetActive(false);
         audioSource1.Stop();
         audioSource2.Stop();

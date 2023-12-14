@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Playables;
+using static UnityEngine.Rendering.DebugUI;
 
 public class FieldOfView : MonoBehaviour {
 
@@ -18,14 +19,29 @@ public class FieldOfView : MonoBehaviour {
 	public int edgeResolveIterations;
 	public float edgeDstThreshold;
 	public float targetVisibleDelay = 0.2f;
-//    public float maxDetectionDelay = 2f; // Maximum delay for detection
-  //  public float maxDetectionDistance = 10f; // Maximum distance for delay effect
+
     public MeshFilter viewMeshFilter;
 	Mesh viewMesh;
 	public CutsceneController controller;
 	public AudioSource audioSource;
-	public AudioClip clip;	
-	void Start() {
+	public AudioClip clip;
+
+
+    public Renderer quadRenderer; // Reference to the renderer of the screen where the shader will be applied
+    public Material detectionMaterial; // Material containing the shader effect
+    public float maxBrightnessDistance = 10.0f; // Maximum distance for maximum brightness
+    public float detectionThreshold = 0.8f; // Threshold for displaying "I found you"
+    public GameObject detectionText; // Reference to the UI text element
+    private bool cutsceneTriggered = false; // Flag to track if cutscene has been triggered
+
+    public float cutsceneTriggerDistance = 2.0f; // Distance threshold to trigger the cutscene
+
+    public float _BrightnessDetectedValue, _BrightnessUndetectedValue = 0;
+
+
+    float brightnessValue = 0.0f;
+
+    void Start() {
         viewMesh = new Mesh
         {
             name = "View Mesh"
@@ -33,7 +49,8 @@ public class FieldOfView : MonoBehaviour {
         viewMeshFilter.mesh = viewMesh;
 
         StartCoroutine("FindTargetsWithDelay", targetVisibleDelay);
-	}
+        
+    }
 
 
 	IEnumerator FindTargetsWithDelay(float delay) {
@@ -43,78 +60,139 @@ public class FieldOfView : MonoBehaviour {
 		}
 	}
 
-	void LateUpdate() {
+
+    void Update()
+    {
+        UpdateBrightnessBasedOnDistance();
+    }
+    void LateUpdate() {
         DrawFieldOfView();
 	}
 
-    void FindVisibleTargets() {
-		visibleTargets.Clear ();
-		Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
+    void UpdateBrightnessBasedOnDistance()
+    {
 
-		for (int i = 0; i < targetsInViewRadius.Length; i++) {
-			Transform target = targetsInViewRadius [i].transform;
-			Vector3 dirToTarget = (target.position - transform.position).normalized;
-			if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
-				float dstToTarget = Vector3.Distance (transform.position, target.position);
-				if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-					if(!audioSource.isPlaying)
-					{
-						Debug.Log("EHJEe");
-						audioSource.Play ();
-					}
-				//udioSource.PlayOneShot(clip);
-					visibleTargets.Add (target);
-                    controller.gameObject.SetActive(true);
-                    controller.GetComponent<CutsceneController>().StartCutscene();
-                }
-			}
-		}
-	}
+        if (visibleTargets.Count > 0)
+        {
+            float maxBrightnessDistance = 10.0f; // Change this value to suit your needs
 
-    /*void FindVisibleTargets()
+            // Consider the first target in the list
+            Transform nearestTarget = visibleTargets[0];
+            float distance = Vector3.Distance(transform.position, nearestTarget.position);
+
+            // Calculate brightness linearly proportional to the distance of the first target
+            float brightnessFactor = Mathf.Clamp01(1 - distance / maxBrightnessDistance);
+            brightnessValue = Mathf.Lerp(0.0f, 1.0f, brightnessFactor);
+        }
+
+        AdjustShaderBrightness(brightnessValue);
+
+        DisplayDetectionText(brightnessValue >= detectionThreshold);
+    }
+
+
+
+    void FindVisibleTargets()
     {
         visibleTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+
+        float minDistance = Mathf.Infinity;
+        Transform nearestTarget = null;
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
+
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
-                audioSource.Play();
-
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
+
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
-					
-
-                    visibleTargets.Add(target);
-                    controller.gameObject.SetActive(true);
-                    controller.GetComponent<CutsceneController>().StartCutscene();
-
-
-                    //float detectionDelay = Mathf.Clamp(dstToTarget / maxDetectionDistance, 0f, maxDetectionDelay);
-                    //StartCoroutine(DelayedDetection(target, maxDetectionDelay));
+                    if (dstToTarget < minDistance)
+                    {
+                        minDistance = dstToTarget;
+                        nearestTarget = target;
+                    }
                 }
             }
         }
-    }*/
-    IEnumerator DelayedDetection(Transform target, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (target != null && !visibleTargets.Contains(target))
+
+        if (nearestTarget != null)
         {
-            
-            
-            visibleTargets.Add(target);
-			controller.gameObject.SetActive(true);
-			controller.GetComponent<CutsceneController>().StartCutscene();
+            visibleTargets.Add(nearestTarget);
 
+            // Perform actions or calculations related to the nearest target...
+            // For example:
+            float delay = Mathf.Clamp(minDistance * 0.1f, 0.0f, 2.0f);
 
-            //GameManager.Instance.BackToMain();
+            if (minDistance <= cutsceneTriggerDistance && !cutsceneTriggered)
+            {
+
+                StartCoroutine(StartCutsceneWithDelay(delay));
+            }
+            else if (minDistance > cutsceneTriggerDistance && cutsceneTriggered)
+            {
+                cutsceneTriggered = false;
+            }
+        }
+        else
+        {
+            AdjustShaderBrightness(0.0f);
+            DisplayDetectionText(false);
         }
     }
+
+    void AdjustShaderBrightness(float brightnessValue)
+    {
+        // Ensure detectionMaterial and screenRenderer are assigned in the Inspector
+        if (quadRenderer!=null)
+        {
+            // Map the brightnessValue between _BrightnessUndetectedValue and _BrightnessDetectedValue
+            float mappedBrightness = Mathf.Lerp(_BrightnessUndetectedValue, _BrightnessDetectedValue, brightnessValue);
+
+            // Clamp the mapped brightness between 0 and 1
+            //float clampedBrightness = Mathf.Clamp01(mappedBrightness);
+
+            // Set the shader property for brightness
+            quadRenderer.material.SetFloat("_Brightness", mappedBrightness *10);
+        }
+    }
+
+    void DisplayDetectionText(bool show)
+    {
+        // Display or hide the detection text based on the boolean parameter
+        if (detectionText != null)
+        {
+            detectionText.SetActive(show) ;
+            if (show)
+            {
+				Debug.Log("I Found You");
+					//detectionText.text = "I found you";
+            }
+        }
+    }
+    IEnumerator StartCutsceneWithDelay(float delay)
+    {
+		yield return new WaitForSecondsRealtime(delay);
+
+        // Start the cutscene after the calculated delay
+        if (!cutsceneTriggered)
+        {
+            Debug.Log("Cutscene trigger");
+            cutsceneTriggered = true;
+            controller.gameObject.SetActive(true);
+            // Play the cutscene
+            controller.GetComponent<CutsceneController>().StartCutscene();
+        }
+    }
+
+ 
+
+
+
 
 
 

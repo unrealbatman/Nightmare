@@ -13,6 +13,8 @@ Shader "vdev/FX/Sprite Wobble (Overlay)"
 		[HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
 		[PerRendererData] _AlphaTex("External Alpha", 2D) = "white" {}
 		[PerRendererData] _EnableExternalAlpha("Enable External Alpha", Float) = 0
+        _Brightness("Brightness", Range(0.0, 10.0)) = 1.0 // Adjust the brightness range as needed
+
 	}
 
 		SubShader
@@ -44,6 +46,8 @@ Shader "vdev/FX/Sprite Wobble (Overlay)"
 
 				float _Intensity;
 				int _Speed;
+				float _Brightness;
+
 
 				float overlay(float a, float b)
 				{
@@ -69,6 +73,8 @@ Shader "vdev/FX/Sprite Wobble (Overlay)"
 					col.g = overlay(col.g, _Color.g);
 					col.b = overlay(col.b, _Color.b);
 					col.rgb *= col.a;
+					col.rgb *= _Brightness; // Multiply color with brightness factor
+
 					return col;
 				}
 				ENDCG
