@@ -94,7 +94,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Intensity: 51
+    - _Intensity: 52
     - _Metallic: 0.06
     - _Mode: 1
     - _ObjectDithering: 1
@@ -102,7 +102,7 @@ Material:
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.43
+    - _Speed: 0.58
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

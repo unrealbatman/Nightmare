@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: scary2
-  m_Shader: {fileID: 4800000, guid: 10426811ee9c7e440a395f3c8e5f65e1, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1bd786fccb984124b81f1ba03e912520, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -105,6 +105,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
+    - _Brightness: 0.75
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
@@ -133,7 +134,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.467
     - _GlossyReflections: 1
-    - _Intensity: 88
+    - _Intensity: 0
     - _LightingEnabled: 1
     - _Metallic: 1
     - _Mode: 1
@@ -150,7 +151,7 @@ Material:
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
-    - _Speed: 0.33
+    - _Speed: 2.91
     - _SrcBlend: 1
     - _Stencil: 0
     - _StencilComp: 8
@@ -169,7 +170,7 @@ Material:
     m_Colors:
     - _Base_Color: {r: 0.03551549, g: 0.01966893, b: 0.3207548, a: 1}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.5345517, g: 0, b: 0.6313726, a: 1}
     - _CubemapColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _Fill_Color: {r: 27.24957, g: 156.1524, b: 444.3774, a: 1}

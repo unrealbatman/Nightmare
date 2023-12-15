@@ -60,7 +60,7 @@ Material:
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
     m_Colors:
-    - _Color: {r: 0.02352941, g: 0.28607294, b: 1, a: 1}
+    - _Color: {r: 0.50149024, g: 0.4620861, b: 0.6226415, a: 1}
     - _CubemapColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 0, b: 0, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
