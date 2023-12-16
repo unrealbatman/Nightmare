@@ -42,8 +42,6 @@ public class Level1Manager : MonoBehaviour
         if (canDoorOpen && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Door is open. E key pressed.");
-
-            GameManager.Instance.LevelFinish("Brickhouse");
             GameManager.Instance.BackToMain();
         }
     }

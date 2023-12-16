@@ -10,6 +10,7 @@ public class RegisterLevelEntry : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> Fires;
+
     
     private void OnEnable()
     {
@@ -47,7 +48,7 @@ public class RegisterLevelEntry : MonoBehaviour
         if (GameManager.Instance.PassedLevels.Count == 2)
         {
             Debug.Log("Passed levels: " + GameManager.Instance.PassedLevels.Count);
-            
+
         }
 
     }
@@ -69,4 +70,5 @@ public class RegisterLevelEntry : MonoBehaviour
             f.GetComponent<ParticleSystem>().Play();
         }
     }
+
 }
