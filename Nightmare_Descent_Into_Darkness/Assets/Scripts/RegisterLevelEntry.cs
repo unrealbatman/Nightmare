@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
 public class RegisterLevelEntry : MonoBehaviour
@@ -11,7 +12,8 @@ public class RegisterLevelEntry : MonoBehaviour
     [SerializeField]
     private List<GameObject> Fires;
 
-    
+    [SerializeField]
+    private List<GameObject> Lights;
     private void OnEnable()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
@@ -35,6 +37,7 @@ public class RegisterLevelEntry : MonoBehaviour
             //disable level entry
             this.gameObject.layer = 0;
             ExtinguishFire();
+            DisableLight();
 
             CheckTriggerDoor ch = GetComponent<CheckTriggerDoor>();
             Destroy(ch);
@@ -68,6 +71,16 @@ public class RegisterLevelEntry : MonoBehaviour
         {
             f.SetActive(true);
             f.GetComponent<ParticleSystem>().Play();
+        }
+    }
+    
+    private void DisableLight()
+    {
+        foreach (GameObject l in Lights)
+        {
+            l.SetActive(false) ;
+
+
         }
     }
 
