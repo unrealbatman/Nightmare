@@ -29,6 +29,7 @@ public class Level3Manager : MonoBehaviour
     public TextMeshProUGUI exitMansionText;
     public TextMeshProUGUI findKeyText;
     public GameObject notePanel;
+    public GameObject detectionPanel;
 
 
     void Start()
@@ -105,6 +106,7 @@ public class Level3Manager : MonoBehaviour
 
     public void DisplayNote()
     {
+        detectionPanel.SetActive(false);
         notePanel.SetActive(true);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
@@ -114,6 +116,7 @@ public class Level3Manager : MonoBehaviour
     {
         Debug.Log("CloseNote");
         notePanel.SetActive(false);
+        detectionPanel.SetActive(true);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
