@@ -5,49 +5,60 @@ using UnityEngine.Playables;
 
 public class BossCutsceneHandler : MonoBehaviour
 {
-
     public Camera mainCam;
     public GameObject cineMachineCam;
     public PlayableDirector director;
     public Canvas cutsceneCanvas;
     public GameObject LightHouse;
-    
-    
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    bool cutscenePlayed = false;
 
-    // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.PassedLevels.Count == 1)
+        if (!cutscenePlayed && GameManager.Instance.PassedLevels.Count == 1)
         {
-            
-            SwitchCam();
-            if(director != null)
-            {
-                director.gameObject.SetActive(true);
-                director.Play();
-                Cursor.lockState = CursorLockMode.None;
-
-            }
-            if(director.time == 20.0)
-            {
-                SwitchCam();
-                Cursor.lockState = CursorLockMode.Locked;
-
-
-            }
+            StartCutscene();
         }
+    }
+
+    void StartCutscene()
+    {
+        cutscenePlayed = true;
+        SwitchCam();
+        if (director != null)
+        {
+            director.gameObject.SetActive(true);
+            director.Play();
+            Cursor.lockState = CursorLockMode.None;
+            StartCoroutine(EndCutsceneAfterDuration(director.duration));
+        }
+    }
+
+    IEnumerator EndCutsceneAfterDuration(double duration)
+    {
+        yield return new WaitForSeconds((float)duration);
+        EndCutscene();
+    }
+
+   public void EndCutscene()
+    {
+        SwitchCam();
+        Cursor.lockState = CursorLockMode.Locked;
+        LightHouse.gameObject.SetActive(true);
     }
 
     public void SwitchCam()
     {
-
         mainCam.gameObject.SetActive(!mainCam.gameObject.activeInHierarchy);
-       // cineMachineCam.gameObject.SetActive(!cineMachineCam.activeInHierarchy);
         cutsceneCanvas.gameObject.SetActive(!cutsceneCanvas.gameObject.activeInHierarchy);
+        cineMachineCam.SetActive(!cineMachineCam.activeSelf);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("AI"))
+        {
+            Debug.Log("AI within circle");
+        }
     }
 }

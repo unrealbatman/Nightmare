@@ -106,6 +106,7 @@ public class AIController : MonoBehaviour
         if(!audioSource.isPlaying)
         {
             audioSource.Play();
+            Debug.Log(audioSource.clip);
         }
 
 
