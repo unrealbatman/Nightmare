@@ -10,21 +10,27 @@ public class BossCutsceneHandler : MonoBehaviour
     public PlayableDirector director;
     public Canvas cutsceneCanvas;
     public GameObject LightHouse;
+    public Collider sphereCol;
 
     bool cutscenePlayed = false;
 
     void Update()
     {
-        if (!cutscenePlayed && GameManager.Instance.PassedLevels.Count == 1)
+        if (cutscenePlayed==false && GameManager.Instance.PassedLevels.Count == 3)
         {
+
             StartCutscene();
         }
+       
     }
 
     void StartCutscene()
     {
+        mainCam.gameObject.SetActive(false);
+        cutsceneCanvas.gameObject.SetActive(true);
+        cineMachineCam.gameObject.SetActive(true);
         cutscenePlayed = true;
-        SwitchCam();
+
         if (director != null)
         {
             director.gameObject.SetActive(true);
@@ -42,8 +48,11 @@ public class BossCutsceneHandler : MonoBehaviour
 
    public void EndCutscene()
     {
-        SwitchCam();
-        Cursor.lockState = CursorLockMode.Locked;
+        cutscenePlayed = true;
+
+        mainCam.gameObject.SetActive(true);
+        cutsceneCanvas.gameObject.SetActive(false);
+        cineMachineCam.gameObject.SetActive(false); Cursor.lockState = CursorLockMode.Locked;
         LightHouse.gameObject.SetActive(true);
     }
 
@@ -54,9 +63,9 @@ public class BossCutsceneHandler : MonoBehaviour
         cineMachineCam.SetActive(!cineMachineCam.activeSelf);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("AI"))
+        if (other.gameObject.CompareTag("AI") &&cutscenePlayed==true)
         {
             Debug.Log("AI within circle");
         }

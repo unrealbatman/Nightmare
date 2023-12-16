@@ -106,7 +106,6 @@ public class AIController : MonoBehaviour
         if(!audioSource.isPlaying)
         {
             audioSource.Play();
-            Debug.Log(audioSource.clip);
         }
 
 
@@ -190,7 +189,6 @@ public class AIController : MonoBehaviour
                 if (rayHit.collider.CompareTag("Player"))
                 {
                     agent.speed = 10;
-                    Debug.Log("Agfent Remainin distance: " + agent.remainingDistance);
                     if (agent.remainingDistance<=2)
                     {
                         agent.isStopped = true;
