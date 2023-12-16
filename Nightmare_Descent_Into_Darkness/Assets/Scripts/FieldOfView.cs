@@ -38,6 +38,7 @@ public class FieldOfView : MonoBehaviour
 
     float brightnessValue = 0.0f;
 
+    public GameObject skipButton;
     void Start()
     {
         viewMesh = new Mesh
@@ -180,6 +181,7 @@ public class FieldOfView : MonoBehaviour
             }
 
             cutsceneTriggered = true;
+            skipButton.gameObject.SetActive(true);
             controller.gameObject.SetActive(true);
             DisplayDetectionText(false);
             detectionPanel.GetComponent<Image>().material.SetFloat("_Brightness", 0.0f);
