@@ -15,7 +15,7 @@ public class ScreenVibration : MonoBehaviour
 
     private Vector3 originalPanelPosition;
     private Vector3 originalCameraPosition;
-    private bool isPanelVibrating = false;
+//    private bool isPanelVibrating = false;
     private bool isCameraShaking = false;
 
     private void Start()
@@ -64,14 +64,14 @@ public class ScreenVibration : MonoBehaviour
 
     public void StartVibration()
     {
-        isPanelVibrating = true;
+       // isPanelVibrating = true;
         PlayHeartbeatSound();
         isCameraShaking = true;
     }
 
     public void StopVibration()
     {
-        isPanelVibrating = false;
+       // isPanelVibrating = false;
         detectionPanel.anchoredPosition = originalPanelPosition;
         StopHeartbeatSound();
         isCameraShaking = false;

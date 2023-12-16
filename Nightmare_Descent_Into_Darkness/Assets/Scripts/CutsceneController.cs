@@ -15,6 +15,7 @@ public class CutsceneController : MonoBehaviour
     public AudioSource audioSource2;
     public AudioSource audioSource3;
     public AudioSource audioSource4;
+    public AudioSource audioSource5;
 
     private void Start()
     {
@@ -42,6 +43,8 @@ public class CutsceneController : MonoBehaviour
         audioSource2.Stop();
         audioSource3.Stop();    
         audioSource4.Stop();
+        audioSource5.Stop();
+
         if (timeline != null)
             {
             
