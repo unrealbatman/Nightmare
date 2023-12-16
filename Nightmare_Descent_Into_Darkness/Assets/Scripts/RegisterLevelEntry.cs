@@ -8,6 +8,8 @@ public class RegisterLevelEntry : MonoBehaviour
     [SerializeField]
     private int levelIndex = 0;
 
+    [SerializeField]
+    private List<GameObject> Fires;
     
     private void OnEnable()
     {
@@ -30,6 +32,7 @@ public class RegisterLevelEntry : MonoBehaviour
         if (GameManager.Instance.PassedLevels.Contains(levelName))
         {
             this.gameObject.layer = 0;
+            ExtinguishFire();
             return;
         }
         else
@@ -43,5 +46,23 @@ public class RegisterLevelEntry : MonoBehaviour
             
         }
 
+    }
+    private void ExtinguishFire()
+    {
+        foreach (GameObject f in Fires)
+        {
+            f.SetActive(false);
+            //f.GetComponent<ParticleSystem>().Stop();
+            //f.GetComponent<ParticleSystem>().Clear();
+        }
+    }
+
+    private void LightUpFire()
+    {
+        foreach (GameObject f in Fires)
+        {
+            f.SetActive(true);
+            f.GetComponent<ParticleSystem>().Play();
+        }
     }
 }
