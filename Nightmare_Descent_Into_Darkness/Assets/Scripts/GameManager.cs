@@ -46,6 +46,13 @@ public class GameManager : MonoBehaviour{
             
     }
 
+   /* private void Update()
+    {
+      *//*  if (PassedLevels.Count == 3)
+        {
+            Debug.Log("ALL three levelsd passed");
+        }*//*
+    }*/
 
     // for visiting scenes in order
     public void LoadLevel()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Playables;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.UI;
 
 public class FieldOfView : MonoBehaviour {
 
@@ -26,8 +27,7 @@ public class FieldOfView : MonoBehaviour {
 	public AudioSource audioSource;
 	public AudioClip clip;
 
-
-    public Renderer quadRenderer; // Reference to the renderer of the screen where the shader will be applied
+    public GameObject detectionPanel;
     public Material detectionMaterial; // Material containing the shader effect
     public float maxBrightnessDistance = 10.0f; // Maximum distance for maximum brightness
     public float detectionThreshold = 0.8f; // Threshold for displaying "I found you"
@@ -48,6 +48,7 @@ public class FieldOfView : MonoBehaviour {
         };
         viewMeshFilter.mesh = viewMesh;
 
+        
         StartCoroutine("FindTargetsWithDelay", targetVisibleDelay);
         
     }
@@ -74,7 +75,6 @@ public class FieldOfView : MonoBehaviour {
 
         if (visibleTargets.Count > 0)
         {
-            float maxBrightnessDistance = 10.0f; // Change this value to suit your needs
 
             // Consider the first target in the list
             Transform nearestTarget = visibleTargets[0];
@@ -83,11 +83,31 @@ public class FieldOfView : MonoBehaviour {
             // Calculate brightness linearly proportional to the distance of the first target
             float brightnessFactor = Mathf.Clamp01(1 - distance / maxBrightnessDistance);
             brightnessValue = Mathf.Lerp(0.0f, 1.0f, brightnessFactor);
+            ScreenVibration screenVibration = detectionPanel.GetComponent<ScreenVibration>();
+            if (screenVibration != null)
+            {
+                screenVibration.StartVibration();
+                if (!audioSource.isPlaying)
+                {
+                    Debug.Log("Audio sourcwe playign i am comging fouyr u");
+                    audioSource.Play();
+                }
+            }
+        }
+        else
+        {
+            // Handle the case where no visible targets are found
+            // For instance, setting brightnessValue to a default value
+            brightnessValue = 0.0f; // or any suitable default value
+            ScreenVibration screenVibration = detectionPanel.GetComponent<ScreenVibration>();
+            if (screenVibration != null)
+            {
+                screenVibration.StopVibration();
+            }
         }
 
         AdjustShaderBrightness(brightnessValue);
 
-        DisplayDetectionText(brightnessValue >= detectionThreshold);
     }
 
 
@@ -127,19 +147,23 @@ public class FieldOfView : MonoBehaviour {
             // Perform actions or calculations related to the nearest target...
             // For example:
             float delay = Mathf.Clamp(minDistance * 0.1f, 0.0f, 2.0f);
-
+            
             if (minDistance <= cutsceneTriggerDistance && !cutsceneTriggered)
             {
+                DisplayDetectionText(true );
 
                 StartCoroutine(StartCutsceneWithDelay(delay));
             }
             else if (minDistance > cutsceneTriggerDistance && cutsceneTriggered)
             {
+                DisplayDetectionText(false);
+
                 cutsceneTriggered = false;
             }
         }
         else
         {
+            
             AdjustShaderBrightness(0.0f);
             DisplayDetectionText(false);
         }
@@ -148,7 +172,7 @@ public class FieldOfView : MonoBehaviour {
     void AdjustShaderBrightness(float brightnessValue)
     {
         // Ensure detectionMaterial and screenRenderer are assigned in the Inspector
-        if (quadRenderer!=null)
+        if (detectionPanel!=null)
         {
             // Map the brightnessValue between _BrightnessUndetectedValue and _BrightnessDetectedValue
             float mappedBrightness = Mathf.Lerp(_BrightnessUndetectedValue, _BrightnessDetectedValue, brightnessValue);
@@ -157,21 +181,18 @@ public class FieldOfView : MonoBehaviour {
             //float clampedBrightness = Mathf.Clamp01(mappedBrightness);
 
             // Set the shader property for brightness
-            quadRenderer.material.SetFloat("_Brightness", mappedBrightness *10);
+            detectionPanel.GetComponent<Image>().material.SetFloat("_Brightness", mappedBrightness *10);
         }
     }
 
     void DisplayDetectionText(bool show)
     {
+        
         // Display or hide the detection text based on the boolean parameter
         if (detectionText != null)
         {
             detectionText.SetActive(show) ;
-            if (show)
-            {
-				Debug.Log("I Found You");
-					//detectionText.text = "I found you";
-            }
+           
         }
     }
     IEnumerator StartCutsceneWithDelay(float delay)
@@ -185,6 +206,7 @@ public class FieldOfView : MonoBehaviour {
             cutsceneTriggered = true;
             controller.gameObject.SetActive(true);
             // Play the cutscene
+            DisplayDetectionText(false);
             controller.GetComponent<CutsceneController>().StartCutscene();
         }
     }

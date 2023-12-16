@@ -46,7 +46,7 @@ public class CutsceneController : MonoBehaviour
             {
             
             timeline.Play(); // Start playing the timeline
-
+            
            
         }
             else

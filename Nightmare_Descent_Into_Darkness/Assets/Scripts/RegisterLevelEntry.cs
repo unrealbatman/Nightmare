@@ -35,7 +35,11 @@ public class RegisterLevelEntry : MonoBehaviour
             GameManager.Instance.LevelMatch.Add(gameObject, levelName);
             Debug.Log(levelName + "registered");
         }
-        
-       
+        if (GameManager.Instance.PassedLevels.Count == 2)
+        {
+            Debug.Log("Passed levels: " + GameManager.Instance.PassedLevels.Count);
+
+        }
+
     }
 }

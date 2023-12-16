@@ -94,8 +94,12 @@ public class Level3Manager : MonoBehaviour
             DisplayNote();
             ShowExitMansionText();
             Debug.Log("All keys collected for Level3! PlayerPrefs set for " + SceneManager.GetActiveScene().name + "Key to 1.");
-//            OnKeyPickedUp?.Invoke();
-    
+            //            OnKeyPickedUp?.Invoke();
+
+        }
+        else
+        {
+            triggerDoor.open = false;
         }
     }
 

@@ -190,14 +190,13 @@ public class AIController : MonoBehaviour
                 {
                     agent.speed = 10;
                     Debug.Log("Agfent Remainin distance: " + agent.remainingDistance);
-                    if (agent.remainingDistance<=1.5)
+                    if (agent.remainingDistance<=2)
                     {
-                        /* agent.isStopped = true;
+                        agent.isStopped = true;
                          // Trigger the attack animation here
                          animator.SetTrigger("Attack");
-                         currentState = State.Attack;*/
-                        SceneManager.LoadScene("GameOverMenu");
-
+                         currentState = State.Attack;
+                        StartCoroutine(loadDelayed());
                     }
 
                     return;
@@ -219,7 +218,11 @@ public class AIController : MonoBehaviour
         }
     }
 
-
+    IEnumerator loadDelayed()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("GameOverMenu");
+    }
     void SearchUpdate()
     {
 
