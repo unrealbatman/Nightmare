@@ -7,6 +7,8 @@ public class RegisterLevelEntry : MonoBehaviour
 {
     [SerializeField]
     private int levelIndex = 0;
+
+    
     private void OnEnable()
     {
         SceneManager.sceneLoaded += onSceneLoaded;
@@ -38,7 +40,7 @@ public class RegisterLevelEntry : MonoBehaviour
         if (GameManager.Instance.PassedLevels.Count == 2)
         {
             Debug.Log("Passed levels: " + GameManager.Instance.PassedLevels.Count);
-    
+            
         }
 
     }

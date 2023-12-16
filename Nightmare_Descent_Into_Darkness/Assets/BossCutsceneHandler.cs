@@ -24,7 +24,7 @@ public class BossCutsceneHandler : MonoBehaviour
 
     public void SwitchCam()
     {
-        if()
+        
         mainCam.gameObject.SetActive(true);
         cineMachineCam.gameObject.SetActive(false);
 
