@@ -31,8 +31,12 @@ public class RegisterLevelEntry : MonoBehaviour
         string levelName = GameManager.Instance.Levels[levelIndex];
         if (GameManager.Instance.PassedLevels.Contains(levelName))
         {
+            //disable level entry
             this.gameObject.layer = 0;
             ExtinguishFire();
+
+            CheckTriggerDoor ch = GetComponent<CheckTriggerDoor>();
+            Destroy(ch);
             return;
         }
         else
