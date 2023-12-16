@@ -112,6 +112,7 @@ public class Level3Manager : MonoBehaviour
 
     public void CloseNote()
     {
+        Debug.Log("CloseNote");
         notePanel.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
