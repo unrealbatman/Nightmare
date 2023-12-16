@@ -38,7 +38,7 @@ public class RegisterLevelEntry : MonoBehaviour
         if (GameManager.Instance.PassedLevels.Count == 2)
         {
             Debug.Log("Passed levels: " + GameManager.Instance.PassedLevels.Count);
-
+    
         }
 
     }
