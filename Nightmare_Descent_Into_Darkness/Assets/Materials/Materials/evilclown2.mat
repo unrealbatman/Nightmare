@@ -36,8 +36,8 @@ Material:
     - PixelSnap: 0
     - _ColorMask: 15
     - _EnableExternalAlpha: 0
-    - _Intensity: 360
-    - _Speed: 3
+    - _Intensity: 38
+    - _Speed: 0.35
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -45,7 +45,7 @@ Material:
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
     m_Colors:
-    - _Color: {r: 0.7075472, g: 0.24253584, b: 0.0378248, a: 1}
+    - _Color: {r: 0.5566038, g: 0.43845677, b: 0.43845677, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

@@ -22,13 +22,13 @@ public class CutsceneController : MonoBehaviour
        //CinemachineCam.SetActive(false);
     }
 
-    void Update()
+   /* void Update()
     {
         if(transform.position.x == 408.0801f)
         {
             SceneManager.LoadScene("GameOverMenu");
         }
-    }
+    }*/
 
   
 
@@ -44,6 +44,7 @@ public class CutsceneController : MonoBehaviour
         audioSource3.Stop();    
         audioSource4.Stop();
         audioSource5.Stop();
+
 
         if (timeline != null)
             {

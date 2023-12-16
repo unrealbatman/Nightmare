@@ -81,10 +81,8 @@ public class FieldOfView : MonoBehaviour
                 screenVibration.StartVibration();
                 
             }
-            Debug.Log("bRIUGHTNESSvALUE: " + brightnessValue);
             if (!audioSource.isPlaying && brightnessValue>0.4)
             {
-                Debug.Log("Audio source playing. I am coming for you.");
                 audioSource.Play();
             }
         }
@@ -168,41 +166,37 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
-    // Check if audio source has completed playing before triggering cutscene
     IEnumerator StartCutsceneWithDelay(float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
 
         if (!cutsceneTriggered)
         {
-            Debug.Log("Cutscene trigger");
 
             // Check if the audio source is not playing or has finished playing
-            if (!audioSource.isPlaying || (audioSource.clip.length - audioSource.time) <= 0.1f)
+            while (audioSource.isPlaying && (audioSource.clip.length - audioSource.time) > 0.1f)
             {
-                cutsceneTriggered = true;
-                controller.gameObject.SetActive(true);
-                DisplayDetectionText(false);
-                detectionPanel.GetComponent<Image>().material.SetFloat("_Brightness", 0.0f);
-                controller.GetComponent<CutsceneController>().StartCutscene();
+                yield return null; // Wait until the audio finishes playing
             }
-            else
-            {
-                // Wait until the audio finishes playing
-                StartCoroutine(WaitForAudioToEnd(delay));
-            }
+
+            cutsceneTriggered = true;
+            controller.gameObject.SetActive(true);
+            DisplayDetectionText(false);
+            detectionPanel.GetComponent<Image>().material.SetFloat("_Brightness", 0.0f);
+            controller.GetComponent<CutsceneController>().StartCutscene();
         }
     }
 
     IEnumerator WaitForAudioToEnd(float delay)
     {
-        // Wait for a short delay
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(delay);
 
-        // Check again after a short delay if the audio has finished playing
-        yield return new WaitForSeconds(delay - 0.1f);
+        while (audioSource.isPlaying && (audioSource.clip.length - audioSource.time) > 0.1f)
+        {
+            yield return null; // Wait until the audio finishes playing
+        }
 
-        if (!cutsceneTriggered && (!audioSource.isPlaying || (audioSource.clip.length - audioSource.time) <= 0.1f))
+        if (!cutsceneTriggered)
         {
             cutsceneTriggered = true;
             controller.gameObject.SetActive(true);
@@ -211,6 +205,7 @@ public class FieldOfView : MonoBehaviour
             controller.GetComponent<CutsceneController>().StartCutscene();
         }
     }
+
 
     #region FOV Utility
 

@@ -13,9 +13,11 @@ public class PriestPatrol : MonoBehaviour
 
     [SerializeField]
     // Variables for state behavior
-    private Transform player; // Assuming player is a GameObject with a transform
+    public Transform player; // Assuming player is a GameObject with a transform
 
-
+    private bool playerDetected = false;
+    // Reference to the FieldOfView script (Assuming it's attached to the priest)
+    private FieldOfView fieldOfView;
 
     private NavMeshAgent agent;
     [SerializeField]
@@ -26,7 +28,6 @@ public class PriestPatrol : MonoBehaviour
 
 
     public float agentMoveSpeed = 0.5f;
-
 
 
 
@@ -66,6 +67,7 @@ private Animator animator;
         initRandomWaypoint = Random.Range(0, Waypoints.Length);
         currentWaypointIndex = initRandomWaypoint;
         agent.SetDestination(Waypoints[initRandomWaypoint].transform.position);
+        fieldOfView = GetComponent<FieldOfView>();
 
         StartCoroutine(PlayAudioEveryTenSeconds());
 
@@ -90,9 +92,35 @@ private Animator animator;
     void Update()
     {
 
-        PatrolUpdate();
+        if (playerDetected)
+        {
+            MoveTowardsPlayer();
+        }
+        else
+        {
+            PatrolUpdate();
+        }
     }
 
+    void MoveTowardsPlayer()
+    {
+        if (player == null)
+            return;
+
+        agent.SetDestination(player.position);
+
+        // Calculate the direction from the agent to the player
+        Vector3 lookDirection = (player.position - transform.position).normalized;
+        lookDirection.y = 0f; // Ensure the rotation is in the horizontal plane
+
+        // If the direction is not zero, rotate towards the player
+        if (lookDirection != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 5f);
+        }
+        // ... (other logic like stopping footsteps or animations)
+    }
     void PatrolUpdate()
     {
         if (_waiting)
@@ -148,6 +176,18 @@ private Animator animator;
         {
             Quaternion newRotation = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 5f);
+        }
+
+        // Check if the player is detected by the FieldOfView
+        if (fieldOfView.visibleTargets.Count > 0)
+        {
+            player = fieldOfView.visibleTargets[0]; // Assuming the first detected target is the player
+            playerDetected = true;
+        }
+        else
+        {
+            playerDetected = false;
+            player = null;
         }
     }
 
