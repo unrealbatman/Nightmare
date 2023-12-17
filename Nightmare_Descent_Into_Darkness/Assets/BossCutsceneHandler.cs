@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class BossCutsceneHandler : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BossCutsceneHandler : MonoBehaviour
     public Canvas GameplayCanvas;
     bool cutscenePlayed = false;
     public GameObject introText;
+    public GameObject outroText;
+    public Image blackImage;
 
     void Update()
     {
@@ -78,5 +81,17 @@ public class BossCutsceneHandler : MonoBehaviour
         {
             Debug.Log("AI within circle");
         }
+        blackImage.gameObject.SetActive(true);
+        StartCoroutine(FadeToWhite());
+    }
+
+    IEnumerator FadeToWhite()
+    {
+        for (float i = 0; i <= 1; i += Time.deltaTime)
+        {
+            blackImage.color = new Color(1, 1, 1, i);
+            yield return null;
+        }
+        outroText.gameObject.SetActive(true);
     }
 }
