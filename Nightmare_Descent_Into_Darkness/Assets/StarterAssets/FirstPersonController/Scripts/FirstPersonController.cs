@@ -320,7 +320,7 @@ namespace StarterAssets
 		{
             if(_input.crouch)
 			{
-                
+                Debug.Log("Crouching");
 				CinemachineCameraTarget.transform.position = Vector3.SmoothDamp(
 					CinemachineCameraTarget.transform.position,
 					CrouchingMoveTo.position,

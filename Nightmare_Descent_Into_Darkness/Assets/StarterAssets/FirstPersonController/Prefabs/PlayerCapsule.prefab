@@ -261,7 +261,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 3
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.25
@@ -302,6 +302,7 @@ MonoBehaviour:
   CrouchingSmoothTime: 0.2
   CrouchingSpeedRatio: 0.7
   CanMove: 1
+  CanRotate: 1
 --- !u!114 &1978471637655604388
 MonoBehaviour:
   m_ObjectHideFlags: 0
