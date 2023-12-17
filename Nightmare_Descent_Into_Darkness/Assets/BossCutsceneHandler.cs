@@ -32,6 +32,9 @@ public class BossCutsceneHandler : MonoBehaviour
         cineMachineCam.gameObject.SetActive(true);
         GameplayCanvas.gameObject.SetActive(false);
         cutscenePlayed = true;
+        GameObject.FindGameObjectsWithTag("AI")[0].gameObject.SetActive(false);
+        GameObject.FindGameObjectsWithTag("AI")[1].gameObject.SetActive(false);
+
         introText.gameObject.SetActive(false);
         if (director != null)
         {
@@ -55,6 +58,8 @@ public class BossCutsceneHandler : MonoBehaviour
         mainCam.gameObject.SetActive(true);
         cutsceneCanvas.gameObject.SetActive(false);
         GameplayCanvas.gameObject.SetActive(true);
+        GameObject.FindGameObjectsWithTag("AI")[0].gameObject.SetActive(true);
+        GameObject.FindGameObjectsWithTag("AI")[1].gameObject.SetActive(true);
 
         cineMachineCam.gameObject.SetActive(false); Cursor.lockState = CursorLockMode.Locked;
         LightHouse.gameObject.SetActive(true);
