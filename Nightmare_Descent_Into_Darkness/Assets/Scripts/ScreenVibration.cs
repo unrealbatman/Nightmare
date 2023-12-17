@@ -82,7 +82,6 @@ public class ScreenVibration : MonoBehaviour
     {
         if (heartbeatSound != null && !heartbeatSound.isPlaying)
         {
-            Debug.Log("Heartbeatplauyong");
             heartbeatSound.Play();
         }
     }
