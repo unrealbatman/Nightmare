@@ -17,6 +17,10 @@ public class DeathSound : MonoBehaviour
     }
     private void play()
     {
+        if(sound.isPlaying)
+        {
+            return;
+        }
         sound.Play();
     }
 }
