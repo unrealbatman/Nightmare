@@ -7,12 +7,13 @@ using UnityEngine;
 public class HeartBeat : MonoBehaviour
 {
     public AudioSource heartBeatSound;
-    public CinemachineVirtualCamera camera;
+    public CinemachineVirtualCamera ca;
     // Start is called before the first frame update
     private void OnEnable()
     {
         AIController.OnPlayerDetect += beat;
         AIController.OnPlayerHide += stopBeat;
+
     }
 
     private void OnDisable()
@@ -25,12 +26,12 @@ public class HeartBeat : MonoBehaviour
     {
         heartBeatSound.Play();
         heartBeatSound.loop = true;
-        camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 3f;
+        ca.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 2.5f;
     }
     public void stopBeat()
     {
         heartBeatSound.Stop();
         heartBeatSound.loop = false;
-        camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0.3f;
+        ca.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0.3f;
     }
 }

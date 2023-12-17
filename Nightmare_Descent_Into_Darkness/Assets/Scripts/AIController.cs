@@ -53,6 +53,12 @@ public class AIController : MonoBehaviour
     public AudioClip searchClip;
     private Animator animator;
 
+    public delegate void PlayerDetect();
+
+    public static event PlayerDetect OnPlayerDetect;
+
+    public static event PlayerDetect OnPlayerHide;
+
     private bool canTransition = true; // Flag for transition cooldown
 
     void Start()
@@ -286,6 +292,8 @@ public class AIController : MonoBehaviour
 
                 //Debug.Log("I can sense the player");
 
+                OnPlayerDetect?.Invoke();
+
                 if (agent.remainingDistance > 60)
                 {
                     if (currentState != State.Chase)
@@ -325,6 +333,8 @@ public class AIController : MonoBehaviour
         // If no player is found
         if (!playerDetected && currentState == State.Chase)
         {
+            OnPlayerHide?.Invoke();
+
             currentState = State.Search;
             animator.ResetTrigger("Chase");
             animator.SetTrigger("Search");
