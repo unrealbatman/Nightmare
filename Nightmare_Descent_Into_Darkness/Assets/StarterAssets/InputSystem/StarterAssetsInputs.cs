@@ -117,8 +117,10 @@ namespace StarterAssets
             if (hits > 0)
             {
 				Debug.Log(hit[0].collider.gameObject);
-				
-				GameManager.Instance.LoadLevel(hit[0].collider.gameObject);
+
+                hit[0].collider.gameObject.GetComponent<CheckTriggerDoor>().CloseText();
+
+                GameManager.Instance.LoadLevel(hit[0].collider.gameObject);
             }
         }
         private void OnDrawGizmos()

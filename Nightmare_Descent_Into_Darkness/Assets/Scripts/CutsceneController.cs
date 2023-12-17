@@ -19,20 +19,20 @@ public class CutsceneController : MonoBehaviour
 
     private void Start()
     {
-       //CinemachineCam.SetActive(false);
+        //CinemachineCam.SetActive(false);
     }
 
-   /* void Update()
+    void Update()
     {
-        if(transform.position.x == 408.0801f)
+        if (GetComponent<PlayableDirector>().time >= 11.75f)
         {
             SceneManager.LoadScene("GameOverMenu");
         }
-    }*/
+    }
 
-  
 
-   public void StartCutscene()
+
+    public void StartCutscene()
     {
         
 

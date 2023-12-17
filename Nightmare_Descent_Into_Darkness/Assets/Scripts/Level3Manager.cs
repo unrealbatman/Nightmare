@@ -133,9 +133,12 @@ public class Level3Manager : MonoBehaviour
         exitMansionText.enabled = false;
     }
 
+    public void goToGameOver()
+    {
+        SceneManager.LoadScene("GameOverMenu");
+    }
 
-    
-   
+
 
     #region ColourChange
     void InitializeMaterialSettings()

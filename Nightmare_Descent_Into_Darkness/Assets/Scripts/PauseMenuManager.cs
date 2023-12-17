@@ -52,6 +52,8 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
         GameManager.Instance.BackToMain();
     }
 }
