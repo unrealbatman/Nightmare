@@ -17,10 +17,15 @@ public class BossCutsceneHandler : MonoBehaviour
     public GameObject introText;
     public GameObject outroText;
     public Image blackImage;
+    GameObject[] aiObjects;
 
+    private void Start()
+    {
+         aiObjects= GameObject.FindGameObjectsWithTag("AI");
+    }
     void Update()
     {
-        if (cutscenePlayed==false && GameManager.Instance.PassedLevels.Count == 3)
+        if (cutscenePlayed==false && GameManager.Instance.PassedLevels.Count == 1)
         {
 
             StartCutscene();
@@ -35,8 +40,12 @@ public class BossCutsceneHandler : MonoBehaviour
         cineMachineCam.gameObject.SetActive(true);
         GameplayCanvas.gameObject.SetActive(false);
         cutscenePlayed = true;
-        GameObject.FindGameObjectsWithTag("AI")[0].gameObject.SetActive(false);
-        GameObject.FindGameObjectsWithTag("AI")[1].gameObject.SetActive(false);
+
+       
+        foreach (GameObject aiObject in aiObjects)
+        {
+            aiObject.SetActive(false);
+        }
 
         introText.gameObject.SetActive(false);
         if (director != null)
@@ -61,8 +70,10 @@ public class BossCutsceneHandler : MonoBehaviour
         mainCam.gameObject.SetActive(true);
         cutsceneCanvas.gameObject.SetActive(false);
         GameplayCanvas.gameObject.SetActive(true);
-        GameObject.FindGameObjectsWithTag("AI")[0].gameObject.SetActive(true);
-        GameObject.FindGameObjectsWithTag("AI")[1].gameObject.SetActive(true);
+        foreach (GameObject aiObject in aiObjects)
+        {
+            aiObject.SetActive(true);
+        }
 
         cineMachineCam.gameObject.SetActive(false); Cursor.lockState = CursorLockMode.Locked;
         LightHouse.gameObject.SetActive(true);
@@ -82,6 +93,10 @@ public class BossCutsceneHandler : MonoBehaviour
             Debug.Log("AI within circle");
         }
         blackImage.gameObject.SetActive(true);
+        foreach (GameObject aiObject in aiObjects)
+        {
+            aiObject.SetActive(false);
+        }
         StartCoroutine(FadeToWhite());
     }
 
