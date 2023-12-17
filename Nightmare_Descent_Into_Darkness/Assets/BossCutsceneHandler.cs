@@ -11,8 +11,9 @@ public class BossCutsceneHandler : MonoBehaviour
     public Canvas cutsceneCanvas;
     public GameObject LightHouse;
     public Collider sphereCol;
-
+    public Canvas GameplayCanvas;
     bool cutscenePlayed = false;
+    public GameObject introText;
 
     void Update()
     {
@@ -29,8 +30,9 @@ public class BossCutsceneHandler : MonoBehaviour
         mainCam.gameObject.SetActive(false);
         cutsceneCanvas.gameObject.SetActive(true);
         cineMachineCam.gameObject.SetActive(true);
+        GameplayCanvas.gameObject.SetActive(false);
         cutscenePlayed = true;
-
+        introText.gameObject.SetActive(false);
         if (director != null)
         {
             director.gameObject.SetActive(true);
@@ -52,6 +54,8 @@ public class BossCutsceneHandler : MonoBehaviour
 
         mainCam.gameObject.SetActive(true);
         cutsceneCanvas.gameObject.SetActive(false);
+        GameplayCanvas.gameObject.SetActive(true);
+
         cineMachineCam.gameObject.SetActive(false); Cursor.lockState = CursorLockMode.Locked;
         LightHouse.gameObject.SetActive(true);
     }
