@@ -67,7 +67,7 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _Brightness: 0
+    - _Brightness: 1.4102354
     - _BumpScale: 1
     - _Cutoff: 0.566
     - _DetailNormalMapScale: 1
