@@ -40,6 +40,7 @@ public class RegisterLevelEntry : MonoBehaviour
             DisableLight();
 
             CheckTriggerDoor ch = GetComponent<CheckTriggerDoor>();
+            ch.CloseText();
             Destroy(ch);
             return;
         }

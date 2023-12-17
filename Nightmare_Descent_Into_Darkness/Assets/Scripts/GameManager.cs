@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour{
         // keep it across all scenes
         DontDestroyOnLoad(gameObject);
 
+
+
+
             
     }
 

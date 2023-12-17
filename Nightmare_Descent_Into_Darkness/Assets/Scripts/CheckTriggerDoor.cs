@@ -29,4 +29,9 @@ public class CheckTriggerDoor : MonoBehaviour
             OnDoorStateChanged?.Invoke(open);
         }
     }
+
+    public void CloseText()
+    {
+        doorInteractText.SetActive(false);
+    }
 }
