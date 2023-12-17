@@ -26,6 +26,7 @@ public class HeartBeat : MonoBehaviour
     {
         heartBeatSound.Play();
         heartBeatSound.loop = true;
+        Debug.Log(heartBeatSound.isPlaying);
         ca.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 2.5f;
     }
     public void stopBeat()

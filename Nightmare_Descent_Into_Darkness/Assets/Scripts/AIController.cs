@@ -54,10 +54,13 @@ public class AIController : MonoBehaviour
     private Animator animator;
 
     public delegate void PlayerDetect();
+    public delegate void PlayerDie();
 
     public static event PlayerDetect OnPlayerDetect;
 
     public static event PlayerDetect OnPlayerHide;
+
+    public static event PlayerDie OnPlayerDie;
 
     private bool canTransition = true; // Flag for transition cooldown
 
@@ -197,11 +200,7 @@ public class AIController : MonoBehaviour
                     agent.speed = 10;
                     if (agent.remainingDistance<=2)
                     {
-                        agent.isStopped = true;
-                         // Trigger the attack animation here
-                         animator.SetTrigger("Attack");
-                         currentState = State.Attack;
-                        StartCoroutine(loadDelayed());
+                        StartCoroutine(Kill());
                     }
 
                     return;
@@ -292,14 +291,16 @@ public class AIController : MonoBehaviour
 
                 //Debug.Log("I can sense the player");
 
-                OnPlayerDetect?.Invoke();
+                
 
                 if (agent.remainingDistance > 60)
                 {
                     if (currentState != State.Chase)
                     {
+                        
                         currentState = State.Chase;
                         animator.ResetTrigger("Search");
+                        OnPlayerDetect?.Invoke();
                         animator.SetTrigger("Chase");
                     }
                     return; // Early exit if the player is far away
@@ -350,6 +351,22 @@ public class AIController : MonoBehaviour
             yield return new WaitForSeconds(2f); // Adjust the cooldown duration as needed
             canTransition = true;
         }
+
+    IEnumerator Kill()
+    {
+        agent.isStopped = true;
+        // Trigger the attack animation here
+        animator.SetTrigger("Attack");
+        currentState = State.Attack;
+
+        // stop player's movement and camera
+        GameManager.Instance.LockMove();
+        GameManager.Instance.LockView();
+
+        OnPlayerDie?.Invoke();
+
+        yield return loadDelayed();
+    }
 
 
 #if UNITY_EDITOR

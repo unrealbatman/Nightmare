@@ -105,7 +105,24 @@ public class GameManager : MonoBehaviour{
         // TODO: can trigger some level end effect here 
     }
 
+    public void LockMove()
+    {
+        firstPersonController.GetComponent<FirstPersonController>().CanMove = false;
+    }
+
+    public void ReleaseMove()
+    {
+        firstPersonController.GetComponent<FirstPersonController>().CanMove = true;
+    }
+    public void LockView()
+    {
+        firstPersonController.GetComponent<FirstPersonController>().CanRotate = false;
+    }
+
+    public void ReleaseView()
+    {
+        firstPersonController.GetComponent<FirstPersonController>().CanRotate = true;
+    }
 
 
-        
 }

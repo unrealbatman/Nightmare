@@ -39,9 +39,11 @@ public class RegisterLevelEntry : MonoBehaviour
             ExtinguishFire();
             DisableLight();
 
-            CheckTriggerDoor ch = GetComponent<CheckTriggerDoor>();
-            ch.CloseText();
-            Destroy(ch);
+            //CheckTriggerDoor ch = GetComponent<CheckTriggerDoor>();
+            //ch.CloseText();
+            //Destroy(ch);
+            SphereCollider collider = GetComponent<SphereCollider>();
+            Destroy(collider);
             return;
         }
         else
