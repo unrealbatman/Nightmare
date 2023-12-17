@@ -25,7 +25,7 @@ public class BossCutsceneHandler : MonoBehaviour
     }
     void Update()
     {
-        if (cutscenePlayed==false && GameManager.Instance.PassedLevels.Count == 1)
+        if (cutscenePlayed==false && GameManager.Instance.PassedLevels.Count == 3)
         {
 
             StartCutscene();
